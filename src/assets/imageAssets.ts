@@ -14,3 +14,8 @@ import bg_pattern_7 from './bg_pattern_7.png';
 import bg_pattern_8 from './bg_pattern_8.png';
 import bg_pattern_9 from './bg_pattern_9.png';
 export const bgPatterns = { bg_pattern_6, bg_pattern_7, bg_pattern_8, bg_pattern_9 };
+
+
+import max from './max.jpeg';
+import uche from './uche.jpeg';
+export const team = {max, uche}
