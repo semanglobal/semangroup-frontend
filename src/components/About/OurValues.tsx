@@ -17,7 +17,7 @@ export default function OurValues() {
     ];
 
     return (
-        <div className="w-full bg-gray-50 py-38 px-8 md:px-16 lg:px-24">
+        <div className="w-full bg-gray-50 py-15 px-4 md:px-16 lg:px-24">
             <style>{`
         @keyframes rotate {
           from {
@@ -32,7 +32,7 @@ export default function OurValues() {
           animation: rotate 8s linear infinite;
         }
       `}</style>
-            <div className='max-w-[1440px] mx-auto'>
+            <div className='max-w-360 mx-auto'>
                 {/* Heading */}
                 <div className="mb-4">
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-700 mb-4">
@@ -99,14 +99,66 @@ export default function OurValues() {
                 </div>
 
                 {/* Bottom Description */}
-                <div className="">
+                {/* <div className="">
                     <p className="text-gray-700 text-base leading-relaxed 2xl:text-2xl">
                         We manage every stage of the real estate development process, from land acquisition and banking to property development and construction management, enabling individuals to make smarter decisions when buying or investing in homes and properties.
                     </p>
-                </div>
-
+                </div> */}
             </div>
 
+            <div className="max-w-360 mx-auto pt-6">
+                {/* Section Title */}
+                <div className="mb-10">
+                    <h2 className="text-3xl font-semibold text-gray-900">
+                        About SEMAN Global Project Ltd
+                    </h2>
+                    <div className="mt-2 w-16 h-0.5 bg-gray-900"></div>
+                </div>
+
+                {/* About Text */}
+                <div className="space-y-6 text-gray-700 leading-7 text-base">
+                    <p>
+                        SEMAN Global Project Ltd was incorporated on 10th August 2016 under the
+                        Companies and Allied Matters Act (CAMA) 1990 and duly registered with the
+                        Corporate Affairs Commission (CAC) with Registration Number{" "}
+                        <span className="font-medium text-gray-900">RC: 1353574</span>.
+                    </p>
+
+                    <p>
+                        Since inception, SEMAN Global Project Ltd has operated as a technical and
+                        reputable company with a global outlook, delivering dependable solutions in
+                        auctioneering, infrastructural development, construction services, and
+                        general procurement and supply.
+                    </p>
+
+                    <p>
+                        Our objective is to be among Nigeria’s leading firms providing innovative
+                        real estate solutions and high-quality services.
+                    </p>
+                </div>
+
+                {/* Services */}
+                <div className="mt-14">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                        Our Core Services
+                    </h3>
+
+                    <div className="border border-gray-200 divide-y divide-gray-200">
+                        <div className="py-4 px-4 font-medium text-gray-800">
+                            Estate Development
+                        </div>
+                        <div className="py-4 px-4 font-medium text-gray-800">
+                            Electrical Engineering
+                        </div>
+                        <div className="py-4 px-4 font-medium text-gray-800">
+                            Procurement Services
+                        </div>
+                        <div className="py-4 px-4 font-medium text-gray-800">
+                            General Contracting
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

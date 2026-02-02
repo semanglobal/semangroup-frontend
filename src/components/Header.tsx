@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,17 +19,17 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleMenuClick = (item: { name: string; path: string }) => {
-    navigate(item.path);
+    // navigate(item.path);
     setIsOpen(false);
   };
 
   return (
     <header className="bg-gray-800 shadow-md sticky top-0 w-full z-50">
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 2xl:h-20 max-w-[1440px] mx-auto">
-          
+        <div className="flex justify-between items-center h-16 2xl:h-20 max-w-360 mx-auto">
+
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <h1 className="font-bold text-white text-lg sm:text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">
               Logo
             </h1>
@@ -38,24 +38,24 @@ const Header = () => {
           {/* Desktop Menu */}
           <nav className="hidden md:flex space-x-6 lg:space-x-8 2xl:space-x-12">
             {menuItems.map((item, index) => (
-              <button
+              <a
                 key={index}
                 onClick={() => handleMenuClick(item)}
                 className="relative text-white font-medium py-2 text-sm group"
+                href={item.path}
               >
                 {item.name}
                 <span
                   className={`
                     absolute bottom-0 left-0 h-0.5 bg-white
                     transition-all duration-300 ease-out
-                    ${
-                      activeItem === item.path
-                        ? "w-full"
-                        : "w-0 group-hover:w-full"
+                    ${activeItem === item.path
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
                     }
                   `}
                 />
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -112,23 +112,23 @@ const Header = () => {
             <ul className="space-y-4 sm:space-y-6">
               {menuItems.map((item, index) => (
                 <li key={index}>
-                  <button
+                  <a
                     onClick={() => handleMenuClick(item)}
                     className="relative w-full text-left rounded-lg hover:bg-gray-50 transition-colors px-4 py-3 font-medium text-gray-700 text-sm"
+                    href={item.path}
                   >
                     {item.name}
                     <span
                       className={`
                         absolute bottom-2 left-4 h-0.5 bg-primary
                         transition-all duration-300 ease-out
-                        ${
-                          activeItem === item.path
-                            ? "w-1/2"
-                            : "w-0 group-hover:w-1/2"
+                        ${activeItem === item.path
+                          ? "w-1/2"
+                          : "w-0 group-hover:w-1/2"
                         }
                       `}
                     />
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
