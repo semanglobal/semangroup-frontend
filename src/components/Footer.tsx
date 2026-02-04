@@ -49,9 +49,9 @@ const Footer: React.FC = () => {
 
     // Contact information
     const contactInfo: ContactInfo[] = [
-        { icon: <FaMapMarkerAlt />, text: '123 Real Estate Blvd, Suite 500, San Francisco, CA 94107' },
-        { icon: <FaPhone />, text: '+1 (555) 123-4567' },
-        { icon: <FaEnvelope />, text: 'info@realestateexample.com' }
+        { icon: <FaMapMarkerAlt />, text: 'Suit 213 MKK Plaza, No 22 IT Igbani Street Opp. Nigeria Canadian International School Beside Vinnee Gas Jabi, Abuja.' },
+        { icon: <FaPhone />, text: '+234 818 436 8514' },
+        { icon: <FaEnvelope />, text: 'semanglobalgroup@gmail.com' }
     ];
 
     // Current year for copyright
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-gray-900 text-gray-200 font-sans px-4 sm:px-6 lg:px-8">
             {/* Main footer content */}
-            <div className="max-w-[1440px] mx-auto py-12 lg:py-16">
+            <div className="max-w-360 mx-auto py-12 lg:py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
                     {/* Company info and logo */}
@@ -70,33 +70,33 @@ const Footer: React.FC = () => {
                                 <FaHome className="text-white text-2xl" />
                             </div>
                             <span className="text-2xl font-bold text-white">
-                                Adeola<span className="text-primary">Realty</span>
+                                SEMAN GLOBAL <span className="text-primary">PROJECT LTD</span>
                             </span>
                         </div>
                         <p className="text-gray-400 leading-relaxed max-w-md">
                             We are a premier real estate agency specializing in luxury properties,
                             commercial real estate, and personalized property management services since 2005.
                         </p>
-                        <div className="pt-4">
+                        {/* <div className="pt-4">
                             <h4 className="text-white font-semibold mb-3 text-lg">Subscribe to our newsletter</h4>
                             <div className="flex flex-col sm:flex-row gap-2">
                                 <input
                                     type="email"
                                     placeholder="Your email"
-                                    className="px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex-grow"
+                                    className="px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent grow"
                                 />
                                 <button className="bg-primary hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-medium transition duration-300 whitespace-nowrap">
                                     Subscribe
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Navigation links */}
                     <div>
                         <h3 className="text-white text-xl font-semibold mb-4 relative pb-3">
                             Navigation
-                            <div className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-orange-700 rounded-full"></div>
+                            <div className="absolute bottom-0 left-0 w-12 h-1 bg-linear-to-r from-primary to-orange-700 rounded-full"></div>
                         </h3>
                         <ul className="space-y-3">
                             {navLinks.map((link) => (
@@ -119,20 +119,20 @@ const Footer: React.FC = () => {
                     <div>
                         <h3 className="text-white text-xl font-semibold mb-4 relative pb-3">
                             Contact Us
-                            <div className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-orange-700 rounded-full"></div>
+                            <div className="absolute bottom-0 left-0 w-12 h-1 bg-linear-to-r from-primary to-orange-700 rounded-full"></div>
                         </h3>
                         <ul className="space-y-4">
                             {contactInfo.map((item, index) => (
                                 <li key={index} className="flex items-start space-x-3">
-                                    <span className="text-primary mt-1 flex-shrink-0">{item.icon}</span>
+                                    <span className="text-primary mt-1 shrink-0">{item.icon}</span>
                                     <span className="text-gray-400 leading-relaxed">{item.text}</span>
                                 </li>
                             ))}
                         </ul>
                         <div className="mt-6 pt-6 border-t border-gray-800">
                             <h4 className="text-white font-semibold mb-3">Business Hours</h4>
-                            <p className="text-gray-400 text-sm">Mon - Fri: 9:00 AM - 6:00 PM</p>
-                            <p className="text-gray-400 text-sm">Saturday: 10:00 AM - 4:00 PM</p>
+                            <p className="text-gray-400 text-sm">Mon - Fri: 8am - 5pm</p>
+                            <p className="text-gray-400 text-sm">Saturday: 8am - 5pm</p>
                             <p className="text-gray-400 text-sm">Sunday: Closed</p>
                         </div>
                     </div>
@@ -141,7 +141,7 @@ const Footer: React.FC = () => {
                     <div>
                         <h3 className="text-white text-xl font-semibold mb-4 relative pb-3">
                             Follow Us
-                            <div className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-orange-700 rounded-full"></div>
+                            <div className="absolute bottom-0 left-0 w-12 h-1 bg-linear-to-r from-primary to-orange-700 rounded-full"></div>
                         </h3>
                         <div className="flex space-x-4 mb-6">
                             {socialMedia.map((social) => (
@@ -192,7 +192,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Copyright bar */}
-            <div className="border-t border-gray-800 bg-gray-950 max-w-[1440px] mx-auto">
+            <div className="border-t border-gray-800 bg-gray-950 max-w-360 mx-auto">
                 <div className="container mx-auto px-4 py-6">
                     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                         <p className="text-gray-500 text-sm">
