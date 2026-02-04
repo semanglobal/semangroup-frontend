@@ -15,12 +15,12 @@ const EnhancedMap = () => {
     const [isMapLoaded, setIsMapLoaded] = useState(false);
 
     const location: MapLocation = {
-        lat: 6.5957,
-        lng: 3.3370,
-        address: '15 Adeniyi Jones Avenue, Ikeja, Lagos, Nigeria',
-        title: 'PrimeRealty Headquarters',
-        phone: '+234 (1) 700 1234',
-        website: 'www.primerealty.ng'
+        lat: 9.071,
+        lng: 7.412,
+        address: 'Suit 213 MKK Plaza, No 22 IT Igbani Street Opp. Nigeria Canadian International School Beside Vinnee Gas Jabi, Abuja',
+        title: 'SEMAN GLOBAL PROJECT LTD',
+        phone: '+234 818 436 8514',
+        website: 'www.semanglobal.ng'
     };
 
     const mapsUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.630658478612!2d${location.lng}!3d${location.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d5c5c5c5c5c%3A0xabcdefabcdefabcd!2s${encodeURIComponent(location.address)}!5e0!3m2!1sen!2sng!4v${Date.now()}`;
@@ -33,14 +33,14 @@ const EnhancedMap = () => {
     };
 
     const openWhatsApp = () => {
-        window.open(`https://wa.me/2348123456789`, '_blank');
+        window.open(`https://wa.me/2348184368514`, '_blank');
     };
 
     return (
-        <div className="relative w-full h-[600px] overflow-hidden shadow group">
+        <div className="relative w-full h-150 overflow-hidden shadow group">
             {/* Loading Overlay */}
             {!isMapLoaded && (
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-gray-100 z-10 flex items-center justify-center">
+                <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-gray-100 z-10 flex items-center justify-center">
                     <div className="text-center">
                         <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
                         <p className="text-gray-600 font-medium">Loading map...</p>
@@ -70,7 +70,7 @@ const EnhancedMap = () => {
                 onMouseLeave={() => setIsCardHovered(false)}
             >
                 <div className="flex items-start space-x-4 mb-6">
-                    <div className="p-3 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl shadow-lg">
+                    <div className="p-3 bg-linear-to-br from-blue-600 to-blue-800 rounded-xl shadow-lg">
                         <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -82,12 +82,12 @@ const EnhancedMap = () => {
                 {/* Address Details */}
                 <div className="space-y-4 mb-6">
                     <div className="flex items-start space-x-3">
-                        <MapPin className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                        <MapPin className="w-5 h-5 text-blue-600 mt-1 shrink-0" />
                         <p className="text-gray-700 leading-relaxed">{location.address}</p>
                     </div>
 
                     <div className="flex items-center space-x-3">
-                        <Phone className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                        <Phone className="w-5 h-5 text-blue-600 shrink-0" />
                         <a
                             href={`tel:${location.phone}`}
                             className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
@@ -97,7 +97,7 @@ const EnhancedMap = () => {
                     </div>
 
                     <div className="flex items-center space-x-3">
-                        <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                        <Globe className="w-5 h-5 text-blue-600 shrink-0" />
                         <a
                             href={`https://${location.website}`}
                             target="_blank"
@@ -113,18 +113,18 @@ const EnhancedMap = () => {
                 <div className="grid grid-cols-2 gap-3">
                     <button
                         onClick={openGoogleMaps}
-                        className="group relative bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl font-semibold overflow-hidden transition-all duration-300 hover:from-blue-700 hover:to-blue-800"
+                        className="group relative bg-linear-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl font-semibold overflow-hidden transition-all duration-300 hover:from-blue-700 hover:to-blue-800"
                     >
                         <span className="relative z-10 flex items-center justify-center space-x-2">
                             <Navigation className="w-4 h-4" />
                             <span>Directions</span>
                         </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                        <div className="absolute inset-0 bg-linear-to-r from-blue-700 to-blue-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                     </button>
 
                     <button
                         onClick={openWhatsApp}
-                        className="group relative bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-4 rounded-xl font-semibold overflow-hidden transition-all duration-300 hover:from-green-600 hover:to-green-700"
+                        className="group relative bg-linear-to-r from-green-500 to-green-600 text-white py-3 px-4 rounded-xl font-semibold overflow-hidden transition-all duration-300 hover:from-green-600 hover:to-green-700"
                     >
                         <span className="relative z-10 flex items-center justify-center space-x-2">
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@ const EnhancedMap = () => {
                             </svg>
                             <span>WhatsApp</span>
                         </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                        <div className="absolute inset-0 bg-linear-to-r from-green-600 to-green-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                     </button>
                 </div>
 
@@ -150,11 +150,11 @@ const EnhancedMap = () => {
             <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/2">
                 <div className="relative">
                     <div className="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-20"></div>
-                    <div className="relative w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
+                    <div className="relative w-12 h-12 bg-linear-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
                         <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                        <div className="w-0 h-0 border-l-[8px] border-r-[8px] border-t-[12px] border-l-transparent border-r-transparent border-t-blue-600"></div>
+                        <div className="w-0 h-0 border-l-8 border-r-8 border-t-12 border-l-transparent border-r-transparent border-t-blue-600"></div>
                     </div>
                 </div>
             </div>

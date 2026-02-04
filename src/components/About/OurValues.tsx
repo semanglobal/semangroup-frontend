@@ -8,7 +8,7 @@ export default function OurValues() {
         },
         {
             title: "Vision",
-            description: "Most successful Real Estate company with the possible solutions."
+            description: "Our goal is to be amongst leading practices offering innovative Real Estates solutions and service in Nigeria."
         },
         {
             title: "Core Values",
