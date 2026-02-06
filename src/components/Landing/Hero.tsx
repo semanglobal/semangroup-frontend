@@ -12,15 +12,15 @@ const Hero = () => {
                     <div className="space-y-4">
                         <div className="space-y-4">
                             <p className="text-lg md:text-xl text-gray-600">
-                                Welcome to Olamide Real Estate
+                                Welcome to Seman Global Project Ltd.
                             </p>
 
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+                            <h1 className="text-6xl md:text-5xl lg:text-6xl font-bold text-gray-900">
                                 You can own a Home{' '}
                                 <span className="text-primary">with us</span>
                             </h1>
 
-                            <p className="text-xl text-gray-600 leading-relaxed">
+                            <p className="lg:text-xl text-gray-600 leading-relaxed">
                                 We are a real estate company dedicated to providing affordable
                                 housing options in Nigeria, and across Africa. As a real estate
                                 developer, we specialize in designing homes to suit different
@@ -43,7 +43,7 @@ const Hero = () => {
                                 <ArrowForward />
                             </button>
 
-                            <button 
+                            <a href="/projects" 
                                 className="
                                     bg-primary hover:bg-primary transition-colors
                                     text-white
@@ -53,11 +53,11 @@ const Hero = () => {
                                     rounded-lg
                                     flex items-center justify-center gap-2
                                 " 
-                                onClick={() => navigate('/projects')}
+                                // onClick={() => navigate('/projects')}
                             >
                                 Our Projects
                                 <ArrowForward />
-                            </button>
+                            </a>
                         </div>
 
                         {/* Feature Icons */}

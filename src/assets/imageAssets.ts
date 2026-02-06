@@ -2,12 +2,13 @@ import no_data from './no_data.png';
 import img1 from './img1.jpg';
 import img2 from './img2.jpg';
 import img3 from './img3.webp';
+import logo from './logo.png'
 import logo1 from './logo1.png'
 import logo2 from './logo2.png'
 import logo3 from './logo3.png'
 import contact_us from './contact-us.jpg'
 
-export const imageAssets = { no_data, img1, img2, img3, logo1, logo2, logo3, contact_us };
+export const imageAssets = { no_data, img1, img2, img3, logo, logo1, logo2, logo3, contact_us };
 
 import bg_pattern_6 from './bg_pattern_6.png';
 import bg_pattern_7 from './bg_pattern_7.png';
@@ -18,4 +19,9 @@ export const bgPatterns = { bg_pattern_6, bg_pattern_7, bg_pattern_8, bg_pattern
 
 import max from './max.jpeg';
 import uche from './uche.jpeg';
-export const team = {max, uche}
+import mary from './mary.jpeg';
+import chioma from './chioma.jpeg';
+import tochi from './tochi.jpeg';
+import bello from './bello.jpeg';
+import agada from './agada.jpeg';
+export const team = {max, uche, mary, chioma, tochi, agada, bello}

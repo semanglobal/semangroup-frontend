@@ -4,15 +4,16 @@ import { team } from '../../assets/imageAssets';
 export default function OurTeam() {
     const teamMembers = [
         { name: "Amb. Dr. Maxwell Stephen", role: "MD/CEO SEMAN GROUP", image: team.max },
-        { name: "Uche Gabriel Anamege", role: "D.O.P SEMAN GLOBAL PROJECT", image: team.uche },
-        { name: "Emily Rodriguez", role: "Sales Consultant" },
-        { name: "David Thompson", role: "Marketing Director" },
-        { name: "Jessica Williams", role: "Client Relations Manager" },
-        { name: "Robert Brown", role: "Investment Advisor" }
+        { name: "Mr. Uche Gabriel Anamege", role: "D.O.P SEMAN GLOBAL PROJECT", image: team.uche },
+        { name: "Mary Desmond", role: "ACCOUNTANT", image: team.mary },
+        { name: "Engr. Bello Jada", role: "Project Manager", image: team.bello },
+        { name: "Mrs Chioma Tochukwu", role: "HEAD OF MARKETING", image: team.chioma },
+        { name: "Arc. Agada Dickson", role: "ARCHITECT", image: team.agada },
+        { name: "Mr. Sergius Tochukwu Oti.", role: "ICT COORDINATOR", image: team.tochi },
     ];
 
     return (
-        <div className="w-full bg-yellow-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="w-full bg-yellow-50/50 py-16 px-4 sm:px-6 lg:px-8">
             <div className='max-w-360 mx-auto'>
                 {/* Heading */}
                 <div className="mb-12 text-center">

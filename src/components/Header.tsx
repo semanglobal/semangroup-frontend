@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { imageAssets } from "../assets/imageAssets";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,16 +25,14 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-800 shadow-md sticky top-0 w-full z-50">
+    <header className="bg-white shadow-md sticky top-0 w-full z-50">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 2xl:h-20 max-w-360 mx-auto">
 
           {/* Logo */}
-          <div className="shrink-0">
-            <h1 className="font-bold text-white text-lg sm:text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">
-              Logo
-            </h1>
-          </div>
+          <a href="/" className="shrink-0">
+            <img src={imageAssets.logo} alt="logo" className="w-15" />
+          </a>
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex space-x-6 lg:space-x-8 2xl:space-x-12">
@@ -41,7 +40,7 @@ const Header = () => {
               <a
                 key={index}
                 onClick={() => handleMenuClick(item)}
-                className="relative text-white font-medium py-2 text-sm group"
+                className="relative text-gray-800 font-medium py-2 text-sm group"
                 href={item.path}
               >
                 {item.name}
@@ -69,7 +68,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-md text-gray-200 hover:bg-gray-700"
+            className="md:hidden p-2 rounded-md text-gray-500 hover:bg-gray-700"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

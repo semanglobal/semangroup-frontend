@@ -7,14 +7,14 @@ const Gallery = () => {
     const navigate = useNavigate();
 
     const projects = [
-        { name: 'Vin Max Estate', address: 'Okota Ikorodu', image: imageAssets.img1, link: '/project' },
-        { name: 'Kent Cone Estate', address: 'Okota, Ikorodu', image: imageAssets.img2, link: '/project' },
-        { name: 'Lim Van Estate', address: 'Agbara, Ikorodu', image: imageAssets.img3, link: '/project' },
+        { name: 'Vin Max Estate', address: 'Okota Ikorodu', image: imageAssets.img1, link: '/project/vin-max-estate' },
+        { name: 'Kent Cone Estate', address: 'Okota, Ikorodu', image: imageAssets.img2, link: '/project/kent-cone-estate' },
+        { name: 'Lim Van Estate', address: 'Agbara, Ikorodu', image: imageAssets.img3, link: '/project/lim-van-estate' },
         // { name: 'Rock Lime Estate, address: 'Agbowa', Ikorodu', image: imageAssets.img1, link: '/project' },
     ]
 
     return (
-        <div className='py-28 px-4 sm:px-6 lg:px-8' style={{backgroundImage: `url(${bgPatterns.bg_pattern_6})`}}>
+        <div className='py-28 px-4 sm:px-6 lg:px-8' style={{ backgroundImage: `url(${bgPatterns.bg_pattern_6})` }}>
             <div className='max-w-360 mx-auto '>
                 <div className="flex flex-col md:flex-row gap-4 justify-between">
                     <div>
@@ -39,7 +39,10 @@ const Gallery = () => {
                 <div className="flex flex-col lg:flex-row gap-20 justify-between lg:gap-6 mt-12">
                     {projects.map((project, index) => (
                         <div key={index} className="relative">
-                            <div className="h-97.5 lg:min-w-90 md:w-95 overflow-hidden rounded-2xl relative cursor-pointer group transition" onClick={() => navigate(project.link)}>
+                            <div
+                                className="h-97.5 lg:min-w-90 md:w-95 overflow-hidden rounded-2xl relative cursor-pointer group transition"
+                                onClick={() => window.location.href = project.link}
+                            >
                                 <div className="absolute inset-0 bg-center bg-cover transform transition-transform duration-700 ease-out group-hover:scale-110 h-full w-full" style={{ backgroundImage: `url(${project.image})` }}></div>
                                 {/* <img src={project.image} alt="" className='h-full w-full hover:scale-110 transition-all ease-in-out duration-600 z-20' /> */}
 
