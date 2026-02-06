@@ -9,8 +9,10 @@ import {
     FaPhone,
     FaEnvelope,
     FaHome,
-    FaChevronRight
+    FaChevronRight,
+    FaTiktok
 } from 'react-icons/fa';
+import { imageAssets } from '../assets/imageAssets';
 
 // TypeScript interfaces
 interface FooterLink {
@@ -35,16 +37,15 @@ const Footer: React.FC = () => {
         { label: 'Home', url: '/' },
         { label: 'About Us', url: '/about-us' },
         { label: 'Projects', url: '/projects' },
-        { label: 'Listings', url: '/listings' },
+        // { label: 'Listings', url: '/listings' },
         { label: 'Contacts', url: '/contacts' }
     ];
 
     // Social media links
     const socialMedia: SocialMedia[] = [
-        { name: 'Facebook', icon: <FaFacebookF />, url: 'https://facebook.com' },
-        { name: 'Twitter', icon: <FaTwitter />, url: 'https://twitter.com' },
-        { name: 'Instagram', icon: <FaInstagram />, url: 'https://instagram.com' },
-        { name: 'LinkedIn', icon: <FaLinkedinIn />, url: 'https://linkedin.com' }
+        { name: 'Facebook', icon: <FaFacebookF />, url: 'https://facebook.com/semangroup' },
+        { name: 'TikTok', icon: <FaTiktok />, url: 'https://www.tiktok.com/@semangroup_nigeria' },
+        { name: 'Instagram', icon: <FaInstagram />, url: 'https://www.instagram.com/semangroupnigeria' },
     ];
 
     // Contact information
@@ -66,8 +67,8 @@ const Footer: React.FC = () => {
                     {/* Company info and logo */}
                     <div className="space-y-6">
                         <div className="flex items-center space-x-3">
-                            <div className="bg-primary p-2 rounded-lg">
-                                <FaHome className="text-white text-2xl" />
+                            <div className="bg-white p-2 rounded-lg">
+                                <img src={imageAssets.logo} alt="logo" className='w-25' />
                             </div>
                             <span className="text-2xl font-bold text-white">
                                 SEMAN GLOBAL <span className="text-primary">PROJECT LTD</span>
@@ -129,12 +130,6 @@ const Footer: React.FC = () => {
                                 </li>
                             ))}
                         </ul>
-                        <div className="mt-6 pt-6 border-t border-gray-800">
-                            <h4 className="text-white font-semibold mb-3">Business Hours</h4>
-                            <p className="text-gray-400 text-sm">Mon - Fri: 8am - 5pm</p>
-                            <p className="text-gray-400 text-sm">Saturday: 8am - 5pm</p>
-                            <p className="text-gray-400 text-sm">Sunday: Closed</p>
-                        </div>
                     </div>
 
                     {/* Social media */}
