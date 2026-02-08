@@ -37,7 +37,7 @@ function App() {
     const { user } = useAuth();
 
     const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-        const token = localStorage.getItem('fasma_superAdmin_token');
+        const token = localStorage.getItem('seman_token');
         const role = localStorage.getItem('fasma_role');
         const schoolAccountStatus = user?.schoolAccountStatus;
 
@@ -56,7 +56,7 @@ function App() {
     };
 
     const ProtectedSuperAdminRoute = ({ children }: { children: React.ReactNode }) => {
-        const token = localStorage.getItem('fasma_superAdmin_token');
+        const token = localStorage.getItem('seman_token');
         const role = localStorage.getItem('fasma_role');
         const schoolAccountStatus = user?.schoolAccountStatus;
 
@@ -68,7 +68,7 @@ function App() {
     };
 
     const ProtectedAdminRoute = ({ children }: { children: React.ReactNode }) => {
-        const token = localStorage.getItem('fasma_superAdmin_token');
+        const token = localStorage.getItem('seman_token');
         const role = localStorage.getItem('fasma_role');
         const schoolAccountStatus = user?.schoolAccountStatus;
 
@@ -80,7 +80,7 @@ function App() {
     };
 
     const ProtectedTeacherRoute = ({ children }: { children: React.ReactNode }) => {
-        const token = localStorage.getItem('fasma_superAdmin_token');
+        const token = localStorage.getItem('seman_token');
         const role = localStorage.getItem('fasma_role');
         const schoolAccountStatus = user?.schoolAccountStatus;
 
@@ -92,7 +92,7 @@ function App() {
     };
 
     const ProtectedStudentRoute = ({ children }: { children: React.ReactNode }) => {
-        const token = localStorage.getItem('fasma_superAdmin_token');
+        const token = localStorage.getItem('seman_token');
         const role = localStorage.getItem('fasma_role');
         const schoolAccountStatus = user?.schoolAccountStatus;
 
@@ -104,7 +104,7 @@ function App() {
     };
 
     const ProtectedGuardianRoute = ({ children }: { children: React.ReactNode }) => {
-        const token = localStorage.getItem('fasma_superAdmin_token');
+        const token = localStorage.getItem('seman_token');
         const role = localStorage.getItem('fasma_role');
         const schoolAccountStatus = user?.schoolAccountStatus;
 
@@ -184,7 +184,7 @@ function App() {
                             </a>
                             <button
                                 onClick={() => {
-                                    localStorage.removeItem('fasma_superAdmin_token');
+                                    localStorage.removeItem('seman_token');
                                     localStorage.removeItem('fasma_role');
                                     window.location.href = '/login';
                                 }}

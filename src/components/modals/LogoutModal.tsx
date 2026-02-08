@@ -33,7 +33,7 @@ const LogoutModal: React.FC<Props> = ({
       onCancel();
       sessionStorage.removeItem("administrationTabs");
       sessionStorage.removeItem("recordsTabs");
-    }, 2000);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -94,11 +94,10 @@ const LogoutModal: React.FC<Props> = ({
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-3 flex items-center justify-center gap-2">
             <User className="text-primary" size={24} />
-            We'll miss you!
+            Are you sure?
           </h2>
           <p className="text-gray-600 leading-relaxed">
-            Are you sure you want to leave? Your journey with us has been amazing, and we'd love
-            to have you back soon.
+            Are you sure you want to log out?
           </p>
         </div>
 
@@ -107,7 +106,7 @@ const LogoutModal: React.FC<Props> = ({
           <button
             onClick={onCancel}
             disabled={isAnimating}
-            className="flex-1 px-2 md:px-6 py-3 bg-primary hover:bg-hover text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed shrink-0 text-sm"
+            className="flex-1 px-2 md:px-6 py-3 bg-primary hover:bg-primary/60 text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed shrink-0 text-sm"
             type="button"
           >
             Stay with us!
@@ -115,7 +114,7 @@ const LogoutModal: React.FC<Props> = ({
           <button
             onClick={handleLogout}
             disabled={isAnimating}
-            className="flex-1 px-2 md:px-6 py-3 bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-500 hover:to-pink-600 text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-0.5 shrink-0 text-sm"
+            className="flex-1 px-2 md:px-6 py-3 bg-hover hover:from-red-500 hover:bg-gray-700 text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-0.5 shrink-0 text-sm"
             type="button"
           >
             {isAnimating ? (
@@ -124,7 +123,7 @@ const LogoutModal: React.FC<Props> = ({
                 Logging out...
               </>
             ) : (
-              <>Goodbye</>
+              <>Logout</>
             )}
           </button>
         </div>

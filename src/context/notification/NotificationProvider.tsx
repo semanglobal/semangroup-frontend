@@ -63,7 +63,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
     if (!user) return;
 
     const newSocket = io(ApiUrl || "http://localhost:4170", {
-      auth: { token: localStorage.getItem("fasma_superAdmin_token") },
+      auth: { token: localStorage.getItem("seman_token") },
     });
 
     newSocket.on("connect", () => {

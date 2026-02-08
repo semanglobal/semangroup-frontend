@@ -12,7 +12,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     if (user) {
       const newSocket = io(ApiUrl || 'http://localhost:4170', {
-        auth: { token: localStorage.getItem('fasma_superAdmin_token') },
+        auth: { token: localStorage.getItem('seman_token') },
       });
 
       newSocket.on('connect', () => {

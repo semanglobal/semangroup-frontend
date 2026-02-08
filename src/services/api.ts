@@ -11,7 +11,7 @@ const api = axios.create({
 
 // 🔐 Add token dynamically before each request
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("fasma_superAdmin_token");
+  const token = localStorage.getItem("seman_token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
