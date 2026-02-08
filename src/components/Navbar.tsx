@@ -88,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar, setSelectedNotification,
                                 {/* {user?.role
                                     ? user.role.charAt(0).toUpperCase() + user.role.slice(1)
                                     : ""} */}
-                                Central
+                                Admin
                             </span>
                             {navpath.split("/").length > 2 && (
                                 <>

@@ -1,7 +1,7 @@
 import api from "./api";
 
 export const fileUpload = async (formData: FormData): Promise<string> => {
-    const response = await api.post("/api/File/upload", formData, {
+    const response = await api.post("/api/file/upload", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }

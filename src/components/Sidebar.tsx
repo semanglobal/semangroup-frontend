@@ -53,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     const [logo, setLogo] = useState("");
     const { user } = useAuth();
     const navigate = useNavigate();
-    const base = 'central'
+    const base = 'admin'
 
     const menuItems: MenuItem[] = [
         {
@@ -62,12 +62,12 @@ const Sidebar: React.FC<SidebarProps> = ({
             path: `/${base}/dashboard`,
             roles: ["admin", "superAdmin", "teacher", "student", "guardian"],
         },
-        // {
-        //     icon: UserPen,
-        //     label: "Admins",
-        //     path: `/${base}/admins`,
-        //     roles: ["superAdmin"],
-        // },
+        {
+            icon: UserPen,
+            label: "Properties",
+            path: `/${base}/properties`,
+            roles: ["superAdmin"],
+        },
         // {
         //     icon: UserPen,
         //     label: "Teachers",
@@ -202,7 +202,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 <>
                                     <span className="font-medium">{item.label}</span>
                                     {item.badge && (
-                                        <span className="ml-auto px-2 py-0.5 text-xs bg-red-500 text-white rounded-full min-w-[1.25rem] text-center">
+                                        <span className="ml-auto px-2 py-0.5 text-xs bg-red-500 text-white rounded-full min-w-5 text-center">
                                             {item.badge}
                                         </span>
                                     )}
@@ -244,7 +244,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 <>
                                     <span className="font-medium">{item.label}</span>
                                     {item.badge && (
-                                        <span className="ml-auto px-2 py-0.5 text-xs bg-red-500 text-white rounded-full min-w-[1.25rem] text-center">
+                                        <span className="ml-auto px-2 py-0.5 text-xs bg-red-500 text-white rounded-full min-w-5 text-center">
                                             {item.badge}
                                         </span>
                                     )}
@@ -265,26 +265,26 @@ const Sidebar: React.FC<SidebarProps> = ({
 
     const SidebarContent = () => (
         <div
-            className={`z-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white transition-all duration-300 ease-in-out flex flex-col h-screen fixed ${isCollapsed ? "w-16" : "w-64"
+            className={`z-20 bg-linear-to-b from-slate-900 to-slate-800 text-white transition-all duration-300 ease-in-out flex flex-col h-screen fixed ${isCollapsed ? "w-16" : "w-64"
                 }`}
         >
             {/* Header */}
-            <div className="py-4 px-2 border-b border-slate-700/50">
+            <div className="py-4 px-2 border-b border-slate-700/50 mb-6">
                 <div className="flex items-center justify-between">
                     <div
                         className={`flex items-center space-x-3 ${isCollapsed ? "justify-center" : ""
                             }`}
                     >
                         <div className="w-8 h-8 bg-white shrink-0 rounded-full p-0.5 flex items-center justify-center overflow-hidden">
-                            <img src={'/fasma_logo.png'} alt="" className="object-cover h-full w-full" />
+                            <img src={'/logo.png'} alt="" className="object-cover h-full w-full" />
                         </div>
                         {!isCollapsed && (
                             <div>
                                 <h1 className="text-md font-bold bg-white bg-clip-text text-transparent">
-                                    FASMA
+                                    Seman Global
                                 </h1>
                                 <p className="text-xs text-slate-400">
-                                    Super admin panel
+                                    Admin panel
                                 </p>
                             </div>
                         )}
@@ -301,20 +301,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                     </button>
                 </div>
             </div>
-
-            {/* Search Bar */}
-            {!isCollapsed && (
-                <div className="p-4">
-                    <div className="relative">
-                        <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="w-full pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
-                        />
-                    </div>
-                </div>
-            )}
 
             {/* Scrollable Navigation */}
             <div
@@ -364,7 +350,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
     const MobileSidebarContent = () => (
         <div
-            className={`z-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white transition-all duration-300 ease-in-out flex flex-col h-[100dvh] fixed ${isCollapsed ? "w-16" : "w-64"
+            className={`z-20 bg-linear-to-b from-slate-900 to-slate-800 text-white transition-all duration-300 ease-in-out flex flex-col h-100dvh fixed ${isCollapsed ? "w-16" : "w-64"
                 }`}
         >
             {/* Header */}

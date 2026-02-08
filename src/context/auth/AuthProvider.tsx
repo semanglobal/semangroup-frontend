@@ -21,7 +21,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    *  LOGOUT (Stable with useCallback)
    * --------------------------- */
   const logout = useCallback(() => {
-    localStorage.removeItem('fasma_superAdmin_token');
+    localStorage.removeItem('seman_token');
     localStorage.removeItem('fasma_role');
     sessionStorage.removeItem('activeNavItem');
     sessionStorage.removeItem('filters');
@@ -34,7 +34,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    *  CHECK TOKEN EXPIRATION
    * --------------------------- */
   const checkTokenValidity = useCallback(() => {
-    const token = localStorage.getItem('fasma_superAdmin_token');
+    const token = localStorage.getItem('seman_token');
     if (!token) return;
 
     try {
@@ -56,7 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    *  INITIAL LOAD: Only on mount
    * --------------------------- */
   useEffect(() => {
-    const token = localStorage.getItem('fasma_superAdmin_token');
+    const token = localStorage.getItem('seman_token');
     if (!token) return;
 
     try {
@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    *  LOGIN
    * --------------------------- */
   const login = (token: string) => {
-    localStorage.setItem('fasma_superAdmin_token', token);
+    localStorage.setItem('seman_token', token);
 
     const decoded = jwtDecode<JwtPayload>(token);
     localStorage.setItem('fasma_role', decoded.role || '');

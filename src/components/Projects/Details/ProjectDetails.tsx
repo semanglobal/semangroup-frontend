@@ -6,7 +6,7 @@ import { Link as LinkScroll } from 'react-scroll'
 const ProjectDetails = () => {
     return (
         <div className=''>
-            <div className="w-full h-[100dvh] relative flex items-center justify-center" style={{ background: `url(${imageAssets.img3})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+            <div className="w-full h-dvh relative flex items-center justify-center" style={{ background: `url(${imageAssets.img3})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                 {/* <img src={} alt="" className="w-full h-full object-cover" /> */}
                 <div className="w-2xl rounded-xl bg-black/50 p-6 flex flex-col items-center justify-center text-white gap-4">
                     <p className="font-bold text-5xl">Gray Manor, Karsana</p>
@@ -19,7 +19,7 @@ const ProjectDetails = () => {
 
 
             <div className='py-16 px-4 sm:px-6 lg:px-8'>
-                <div className='max-w-[1440px] mx-auto'>
+                <div className='max-w-360 mx-auto'>
                 </div>
             </div>
         </div>

@@ -18,6 +18,7 @@ import Projects from "./pages/Projects";
 import DetailsPage from "./pages/DetailsPage";
 import QRCodeGenerator from "./pages/QRCodeGenerator";
 import QRCodeGeneratorScanner from "./pages/QRCodeGeneratorScanner";
+import Properties from "./pages/Properties";
 // import CleanTrackingParams from "./context/CleanTrackingParams";
 // import ReactGA from "react-ga4";
 
@@ -26,12 +27,12 @@ function App() {
   const { user } = useAuth();
 
   const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-    const token = localStorage.getItem('fasma_superAdmin_token');
+    const token = localStorage.getItem('seman_token');
     return token ? children : <Navigate to="/login" />;
   };
 
   const ProtectedSuperAdminRoute = ({ children }: { children: React.ReactNode }) => {
-    const token = localStorage.getItem('fasma_superAdmin_token');
+    const token = localStorage.getItem('seman_token');
     const role = localStorage.getItem('fasma_role');
     return token && role === 'superAdmin' ? children : <Navigate to="/login" />;
   };
@@ -43,15 +44,20 @@ function App() {
         {/* <Route path="/" element={<ProtectedRoute><Navigate to={`/${user?.role}/dashboard`} /></ProtectedRoute>} /> */}
         {/* <Route path="/" element={<Navigate to={`/central/dashboard`} />} /> */}
 
-        {/* < Route path="/central" element={<ProtectedRoute><SuperAdminLayout /></ProtectedRoute>}>
+        < Route path="/admin" element={
+          <ProtectedRoute>
+            <SuperAdminLayout />
+          </ProtectedRoute>
+        }>
           <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="properties" element={<Properties />} />
           <Route path="settings" element={<UserProfilePage />} />
         </ Route>
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
         <Route path="/auth/confirm-email" element={<ConfirmEmail />} />
-        <Route path="/auth/reset-password" element={<ResetPassword />} /> */}
+        <Route path="/auth/reset-password" element={<ResetPassword />} />
         <Route
           path="*"
           element={
