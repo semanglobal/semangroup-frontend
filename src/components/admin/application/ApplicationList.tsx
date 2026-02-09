@@ -585,10 +585,12 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
             )}
 
             {downloadModal && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 animate-fadeIn" onClick={() => setOpenDownloadModal(false)}>
+                <>
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 animate-fadeIn" onClick={() => setOpenDownloadModal(false)}>
+                    </div>
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
                         <div
-                            className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 pointer-events-auto animate-scaleIn relative"
+                            className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 pointer-events-auto animate-scaleIn relative max-h-[90vh] overflow-y-auto"
                         >
                             <X className='absolute right-4 top-4 hover:text-primary cursor-pointer' onClick={() => setOpenDownloadModal(false)} />
 
@@ -650,7 +652,7 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
                             )}
                         </div>
                     </div>
-                </div>
+                </>
             )}
 
             {/* Floating menu */}
