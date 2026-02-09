@@ -19,6 +19,7 @@ import DetailsPage from "./pages/DetailsPage";
 import QRCodeGenerator from "./pages/QRCodeGenerator";
 import QRCodeGeneratorScanner from "./pages/QRCodeGeneratorScanner";
 import Properties from "./pages/Properties";
+import Applications from "./pages/Applications";
 // import CleanTrackingParams from "./context/CleanTrackingParams";
 // import ReactGA from "react-ga4";
 
@@ -51,6 +52,7 @@ function App() {
         }>
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="properties" element={<Properties />} />
+          <Route path="applications" element={<Applications />} />
           <Route path="settings" element={<UserProfilePage />} />
         </ Route>
 
@@ -86,8 +88,8 @@ function App() {
           <Route path="/contacts" element={<ContactUs />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/project/:slug" element={<DetailsPage />} />
-          <Route path="/qr" element={<QRCodeGenerator />} />
-          <Route path="/qr2" element={<QRCodeGeneratorScanner />} />
+          {/* <Route path="/qr" element={<QRCodeGenerator />} />
+          <Route path="/qr2" element={<QRCodeGeneratorScanner />} /> */}
         </ Route>
       </Routes >
     </BrowserRouter >

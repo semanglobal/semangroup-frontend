@@ -45,7 +45,7 @@ const LogoutModal: React.FC<Props> = ({
           delay: Math.random() * 2
         };
         setHearts(prev => [...prev.slice(-5), newHeart]);
-      }, 1500);
+      }, 1000);
 
       return () => clearInterval(heartInterval);
     }
@@ -55,20 +55,6 @@ const LogoutModal: React.FC<Props> = ({
 
   return (
     <div className="fixed inset-0 bg-[#00000066] bg-opacity-60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-      {/* Floating hearts background */}
-      {/* {hearts.map((heart: Heart) => (
-                <Heart
-                    key={heart.id}
-                    className="absolute text-red-300 opacity-20 animate-bounce"
-                    style={{
-                        left: `${heart.left}%`,
-                        top: '80%',
-                        animationDelay: `${heart.delay}s`,
-                        animationDuration: '3s'
-                    }}
-                    size={24}
-                />
-            ))} */}
 
       {/* Modal */}
       <div className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl transform transition-all duration-300">
