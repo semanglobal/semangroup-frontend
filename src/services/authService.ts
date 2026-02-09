@@ -6,7 +6,6 @@ export const AuthService = {
     login: async (data: LoginType): Promise<DecryptedResponse> => {
         try {
             const response = await api.post("/api/auth/login", data);
-            console.log(response);
             return response.data;
         } catch (error) {
             console.log(error);
