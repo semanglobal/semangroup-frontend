@@ -20,7 +20,8 @@ import {
     HandCoins,
     ClipboardCheck,
     Computer,
-    LibraryBig
+    LibraryBig,
+    ShoppingBag
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth/useAuth";
@@ -68,12 +69,12 @@ const Sidebar: React.FC<SidebarProps> = ({
             path: `/${base}/properties`,
             roles: ["superAdmin"],
         },
-        // {
-        //     icon: UserPen,
-        //     label: "Teachers",
-        //     path: `/${base}/teachers`,
-        //     roles: ["admin", "superAdmin"],
-        // },
+        {
+            icon: ShoppingBag,
+            label: "Applications",
+            path: `/${base}/applications`,
+            roles: ["admin", "superAdmin"],
+        },
         // {
         //     icon: User,
         //     label: "Students",
@@ -165,19 +166,6 @@ const Sidebar: React.FC<SidebarProps> = ({
             return item;
         }
     });
-
-    // useEffect(() => {
-    //     fetschoolData();
-    // }, []);
-
-    // const fetschoolData = async () => {
-    //     try {
-    //         const response = await ProfileService.getSchoolData();
-    //         setLogo(response.logo);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 
     const renderMenuItems = () => (
         <ul className="space-y-2">
@@ -350,7 +338,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
     const MobileSidebarContent = () => (
         <div
-            className={`z-20 bg-linear-to-b from-slate-900 to-slate-800 text-white transition-all duration-300 ease-in-out flex flex-col h-100dvh fixed ${isCollapsed ? "w-16" : "w-64"
+            className={`z-20 bg-linear-to-b from-slate-900 to-slate-800 text-white transition-all duration-300 ease-in-out flex flex-col h-dvh fixed ${isCollapsed ? "w-16" : "w-64"
                 }`}
         >
             {/* Header */}

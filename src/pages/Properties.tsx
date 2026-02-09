@@ -161,7 +161,7 @@ const Properties: React.FC = () => {
     }
 
     return (
-        <div className="px-4 max-w-7xl mx-auto">
+        <div className="px-4 max-w-full mx-auto">
             {/* Header with Add Button */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                 <div>

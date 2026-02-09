@@ -1,4 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState } from 'react';
+import { EnquiryService } from '../../../services/enquiryService';
+import { FaSpinner } from 'react-icons/fa';
+import { Loader2 } from 'lucide-react';
 
 interface FormData {
   firstName: string;
@@ -31,6 +36,9 @@ export default function ReachOut() {
     referralSource: '',
     comments: ''
   });
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
 
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -78,30 +86,73 @@ export default function ReachOut() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    setError('')
+    setSuccess('')
+
     if (validateForm()) {
-      console.log('Form submitted:', formData);
-      alert('Form submitted successfully!');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        propertyType: '',
-        bestTime: '',
-        referralSource: '',
-        comments: ''
-      });
+      setLoading(true)
+
+      try {
+        const res = await EnquiryService.sendEnquiry(formData)
+        setSuccess(
+          res?.message || 'Your enquiry has been sent successfully 🎉'
+        )
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          propertyType: '',
+          bestTime: '',
+          referralSource: '',
+          comments: ''
+        });
+      } catch (err: any) {
+        setError(
+          err?.response?.data?.message ||
+          'Something went wrong. Please try again.'
+        )
+        setTimeout(() => setError(''), 5000)
+      } finally {
+        setLoading(false)
+      }
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4" id='reachOut'>
-      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+      <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Reach Out</h1>
         <p className="text-gray-600 mb-8 pb-8 border-b border-gray-200">
           Let us know to give you a call about any questions you might have.
         </p>
+
+        {/* SUCCESS ALERT */}
+        {success && (
+          <div className="mt-6 flex gap-3 rounded-lg border border-green-200 bg-green-50 p-4 text-green-800 animate-fadeIn">
+            <span className="text-xl">✔</span>
+            <div>
+              <p className="font-semibold">
+                Message Sent
+              </p>
+              <p className="text-sm">{success}</p>
+            </div>
+          </div>
+        )}
+
+        {/* ERROR ALERT */}
+        {error && (
+          <div className="mt-6 flex gap-3 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800 animate-fadeIn">
+            <span className="text-xl">⚠</span>
+            <div>
+              <p className="font-semibold">
+                Submission Failed
+              </p>
+              <p className="text-sm">{error}</p>
+            </div>
+          </div>
+        )}
 
         <div className="space-y-6">
           {/* Name Section */}
@@ -122,6 +173,7 @@ export default function ReachOut() {
                 <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
               )}
             </div>
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2 invisible">
                 Last Name
@@ -187,8 +239,8 @@ export default function ReachOut() {
             >
               <option value="">Select a property type</option>
               <option value="residential">Residential</option>
-              <option value="commercial">Commercial</option>
-              <option value="industrial">Industrial</option>
+              <option value="house">House</option>
+              <option value="apartment">Apartment</option>
               <option value="land">Land</option>
             </select>
             <p className="mt-2 text-sm text-gray-600">
@@ -258,13 +310,56 @@ export default function ReachOut() {
             </div>
           </div>
 
+          {/* SUCCESS ALERT */}
+          {success && (
+            <div className="mt-6 flex gap-3 rounded-lg border border-green-200 bg-green-50 p-4 text-green-800 animate-fadeIn">
+              <span className="text-xl">✔</span>
+              <div>
+                <p className="font-semibold">
+                  Message Sent
+                </p>
+                <p className="text-sm">{success}</p>
+              </div>
+            </div>
+          )}
+
+          {/* ERROR ALERT */}
+          {error && (
+            <div className="mt-6 flex gap-3 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800 animate-fadeIn">
+              <span className="text-xl">⚠</span>
+              <div>
+                <p className="font-semibold">
+                  Submission Failed
+                </p>
+                <p className="text-sm">{error}</p>
+              </div>
+            </div>
+          )}
+
           {/* Submit Button */}
           <div>
-            <button
+            {/* <button
               onClick={handleSubmit}
               className="bg-primary hover:bg-primary text-white font-semibold px-8 py-3 rounded transition-colors duration-200"
             >
               Submit
+            </button> */}
+
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className={`rounded transition-colors duration-300 text-white px-6 py-3 mt-4 md:col-span-2 w-max
+                                ${loading
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-primary hover:bg-primary'
+                }`}
+            >
+              {loading ? (
+                <span className='flex gap-4'>
+                  <Loader2 className='animate-spin' />
+                  Sending...
+                </span>
+              ) : 'Send Message'}
             </button>
           </div>
         </div>

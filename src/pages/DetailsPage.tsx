@@ -5,7 +5,7 @@ import ProjectDetails from '../components/Projects/Details/ProjectDetails'
 
 const DetailsPage = () => {
     const location = useLocation()
-    console.log(location.state)
+    
     return (
         <div>
             <ProjectDetails />

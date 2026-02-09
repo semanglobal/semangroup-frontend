@@ -60,26 +60,14 @@ const LoginPage = () => {
         <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 to-black p-4">
             <div className="w-full max-w-md">
                 {/* Super Admin Header */}
-                <div className="text-center mb-8">
-                    <div className="flex justify-center mb-6">
-                        <div className="w-20 h-20 bg-linear-to-br rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/20">
-                            <img src="/fasma_logo.png" alt="" />
-                        </div>
+                <div className="mb-1 text-center flex flex-col items-center gap-2">
+                    <div className="bg-white rounded-2xl p-2">
+                        <img src={'/logo.png'} alt="logo" loading='lazy' className='w-16' />
                     </div>
-
-                    <div className="mb-2">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 mb-3">
-                            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                            <span className="text-sm font-medium text-purple-300">SUPER ADMIN ACCESS</span>
-                        </div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 mb-3">
+                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                        <span className="text-sm font-medium text-purple-300">ADMIN ACCESS ONLY</span>
                     </div>
-
-                    <h1 className="text-3xl font-bold text-white mb-3">
-                        System Control
-                    </h1>
-                    <p className="text-gray-400 text-lg">
-                        Elevated privileges required
-                    </p>
                 </div>
 
                 {/* Login Form */}
@@ -142,7 +130,7 @@ const LoginPage = () => {
                             ) : (
                                 <div className="flex items-center">
                                     <Shield className="w-5 h-5 mr-2" />
-                                    Access System
+                                    Access Dashboard
                                 </div>
                             )}
                         </button>
@@ -165,7 +153,7 @@ const LoginPage = () => {
                 {/* Security Notice */}
                 <div className="mt-6 text-center">
                     <p className="text-xs text-gray-500">
-                        🔒 Secure super admin portal • Unauthorized access prohibited
+                        🔒 Secure admin portal • Unauthorized access prohibited
                     </p>
                 </div>
             </div>
