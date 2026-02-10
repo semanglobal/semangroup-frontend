@@ -56,10 +56,7 @@ const MonthlyRevenueChart = () => {
         setError(null);
 
         try {
-            console.log('Fetching revenue data for year:', year);
-            // Assuming your API needs the year parameter
             const response = await DashboardService.getMonthlyRevenue(year);
-            console.log('API Response:', response);
 
             if (response.success) {
                 console.log('Setting revenue data:', response);
