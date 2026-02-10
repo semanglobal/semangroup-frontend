@@ -2,27 +2,7 @@
 import type { ApplicationCreate, ApplicationGet } from "../types/application";
 import api from "./api";
 
-export const ApplicationService = {
-    createApplication: async (data: any): Promise<{
-        success?: boolean;
-        message: string;
-        pagination: {
-            total: number;
-            page: number;
-            limit: number;
-            totalPages: number;
-        };
-        data: string;
-    }> => {
-        const response = await api.post(`/api/application`, data);
-        return response.data;
-    },
-
-    updateApplication: async (data: any, id: string): Promise<any> => {
-        const response = await api.put(`/api/application/${id}`, data);
-        return response.data;
-    },
-
+export const DashboardService = {
     getAllApplications: async (params?: {
         page?: number;
         limit?: number;
@@ -62,13 +42,13 @@ export const ApplicationService = {
         }
     },
 
-    getApplicationById: async (id: string): Promise<any> => {
-        try {
-            const response = await api.get(`/api/application/${id}`)
-            return response.data.data
-        } catch (error) {
-            console.log(error)
-            throw error;
-        }
+    getAnalytics: async (): Promise<any> => {
+        const response = await api.get(`/api/application/analytics/dashboard`)
+        return response.data.data
+    },
+
+    getMonthlyRevenue: async (year: number): Promise<any> => {
+        const response = await api.get(`/api/application/analytics/monthly-revenue?year=${year}`)
+        return response.data
     },
 };

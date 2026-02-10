@@ -265,11 +265,11 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
             } else {
                 const res = await ApplicationService.createApplication(payload);
                 handleGenerate(res.data)
-
+                setSuccessModal(true)
                 toast.success(res.message as string);
                 setSelectedFile(null);
                 setTempDocument(null);
-                onClose();
+                // onClose();
                 refetch?.();
             }
         } catch (error) {
@@ -605,7 +605,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
             <SuccessModal
                 isOpen={successModal}
-                onClose={() => {setSuccessModal(false); onClose()}}
+                onClose={() => { setSuccessModal(false); onClose() }}
                 title="Success!"
                 message="Your enquiry has been submitted successfully. We'll get back to you soon."
                 download={handleDownload}

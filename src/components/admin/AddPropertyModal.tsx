@@ -1,5 +1,5 @@
 /*eslint-disable @typescript-eslint/no-explicit-any*/
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import axios from 'axios';
 import {
     Modal,
@@ -34,7 +34,13 @@ import { toast } from 'react-toastify';
 import { PropertyService } from '../../services/propertyService';
 import { fileUpload } from '../../services/fileUpload';
 
+// Import React Quill
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 interface Location {
+    lat: number;
+    long: number;
     address: string;
     city: string;
     state: string;
@@ -64,8 +70,8 @@ interface AddPropertyModalProps {
     onAdd: (newProperty: Property) => void;
 }
 
-const propertyTypes = ['apartment', 'house', 'condo', 'villa', 'townhouse', 'commercial'];
-const statusOptions = ['for-sale', 'for-rent'];
+const propertyTypes = ["apartment", "house", "land"];
+const statusOptions = ['for-sale', 'for-rent', 'sold'];
 const predefinedAmenities = [
     '24/7 Electricity',
     'Security',
@@ -89,6 +95,8 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
         description: '',
         price: 0,
         location: {
+            lat: 0,
+            long: 0,
             address: '',
             city: '',
             state: '',
@@ -114,6 +122,27 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
     const [uploadingThumbnail, setUploadingThumbnail] = useState(false);
     const [uploadingGallery, setUploadingGallery] = useState(false);
 
+    // React Quill modules configuration
+    const quillModules = useMemo(() => ({
+        toolbar: {
+            container: [
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'indent': '-1' }, { 'indent': '+1' }],
+                ['link', 'image'],
+                ['clean']
+            ],
+        },
+    }), []);
+
+    const quillFormats = [
+        'header',
+        'bold', 'italic', 'underline', 'strike',
+        'list', 'bullet', 'indent',
+        'link', 'image'
+    ];
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -123,13 +152,21 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            location: { ...prev.location, [name]: value }
+            location: {
+                ...prev.location,
+                [name]: name === 'lat' || name === 'long' ? parseFloat(value) || 0 : value
+            }
         }));
     };
 
     const handleSelectChange = (e: SelectChangeEvent<string>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Updated React Quill handler
+    const handleQuillChange = (value: string) => {
+        setFormData(prev => ({ ...prev, description: value }));
     };
 
     const handleAmenitiesChange = (event: SelectChangeEvent<string[]>) => {
@@ -239,7 +276,6 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
             const url = await fileUpload(formData);
             return url;
         } catch (error) {
-            // console.error('Error uploading thumbnail:', error);
             toast.error('Failed to upload thumbnail');
             throw error;
         } finally {
@@ -261,7 +297,6 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
             const urls = await Promise.all(uploadPromises);
             return urls;
         } catch (error) {
-            // console.error('Error uploading gallery images:', error);
             toast.error('Failed to upload gallery images');
             throw error;
         } finally {
@@ -275,6 +310,8 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
             description: '',
             price: 0,
             location: {
+                lat: 0,
+                long: 0,
                 address: '',
                 city: '',
                 state: '',
@@ -317,7 +354,6 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
             onClose();
         } catch (err) {
             setError('Failed to add property. Please try again.');
-            // console.error('Error adding property:', err);
             toast.error('Failed to add property');
         } finally {
             setLoading(false);
@@ -394,18 +430,24 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
                                         placeholder="e.g., Modern 3-Bedroom Apartment"
                                     />
 
-                                    <TextField
-                                        fullWidth
-                                        label="Description"
-                                        name="description"
-                                        multiline
-                                        rows={3}
-                                        value={formData.description}
-                                        onChange={handleInputChange}
-                                        required
-                                        size="small"
-                                        placeholder="Describe the property, its features, and nearby amenities..."
-                                    />
+                                    {/* Replaced TextField with ReactQuill */}
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 1 }}>
+                                            Description *
+                                        </Typography>
+                                        <ReactQuill
+                                            value={formData.description}
+                                            onChange={handleQuillChange}
+                                            modules={quillModules}
+                                            formats={quillFormats}
+                                            theme="snow"
+                                            placeholder="Describe the property, its features, and nearby amenities..."
+                                            style={{
+                                                height: '200px',
+                                                marginBottom: '40px' // Space for toolbar overlap
+                                            }}
+                                        />
+                                    </Box>
 
                                     <Grid container spacing={2}>
                                         <div>
@@ -468,7 +510,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
                                             >
                                                 {statusOptions.map(status => (
                                                     <MenuItem key={status} value={status}>
-                                                        {status === 'for-sale' ? 'For Sale' : 'For Rent'}
+                                                        {status === 'for-sale' ? 'For Sale' : status === 'for-rent' ? 'For Rent' : 'Sold'}
                                                     </MenuItem>
                                                 ))}
                                             </TextField>
@@ -530,6 +572,40 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
                                                 required
                                                 size="small"
                                                 placeholder="e.g., Lagos"
+                                            />
+                                        </div>
+                                        <div>
+                                            <TextField
+                                                fullWidth
+                                                label="Latitude"
+                                                name="lat"
+                                                type="number"
+                                                inputProps={{
+                                                    step: "0.000001", // Allow decimal input
+                                                }}
+                                                value={formData.location.lat || ''}
+                                                onChange={handleLocationChange}
+                                                required
+                                                size="small"
+                                                placeholder="e.g., 6.524379"
+                                                helperText="Decimal format (e.g., 6.524379)"
+                                            />
+                                        </div>
+                                        <div>
+                                            <TextField
+                                                fullWidth
+                                                label="Longitude"
+                                                name="long"
+                                                type="number"
+                                                inputProps={{
+                                                    step: "0.000001", // Allow decimal input
+                                                }}
+                                                value={formData.location.long || ''}
+                                                onChange={handleLocationChange}
+                                                required
+                                                size="small"
+                                                placeholder="e.g., 3.379206"
+                                                helperText="Decimal format (e.g., 3.379206)"
                                             />
                                         </div>
                                     </Grid>
@@ -801,7 +877,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
                         </Button>
                         <Button
                             variant="contained"
-                            style={{backgroundColor: '#c20021'}}
+                            style={{ backgroundColor: '#c20021' }}
                             disabled={loading || uploadingThumbnail || uploadingGallery}
                             onClick={handleSubmit}
                             startIcon={loading ? <CircularProgress size={20} color="inherit" /> : null}

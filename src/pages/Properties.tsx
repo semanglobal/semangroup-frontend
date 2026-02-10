@@ -5,6 +5,7 @@ import EditPropertyModal from '../components/admin/EditPropertyModal';
 import AddPropertyModal from '../components/admin/AddPropertyModal';
 import { PropertyService } from '../services/propertyService';
 import type { PropertyType } from '../types/propertyType';
+import { toast } from 'react-toastify';
 
 interface Location {
     address: string;
@@ -110,6 +111,8 @@ const Properties: React.FC = () => {
         setDeleting(true)
         try {
             await PropertyService.deleteProperty(propertyToDelete.id);
+            toast.success('Property deleted successfully')
+            fetchProperties()
             setDeleteModalOpen(false);
             setPropertyToDelete(null);
         } catch (err) {
@@ -247,9 +250,9 @@ const Properties: React.FC = () => {
                             </div>
 
                             {/* Description */}
-                            <p className="text-gray-600 text-sm mb-1 line-clamp-2 flex-1">
-                                {property.description}
-                            </p>
+                            <div className="text-gray-600 text-sm mb-1 line-clamp-2 flex-1" dangerouslySetInnerHTML={{__html: property.description}}>
+                                {/* {property.description} */}
+                            </div>
 
                             {/* Amenities */}
                             <div className="flex flex-wrap gap-1 mb-1">
@@ -309,7 +312,7 @@ const Properties: React.FC = () => {
                         </p>
                         <button
                             onClick={handleAddClick}
-                            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-hover transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                         >
                             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
