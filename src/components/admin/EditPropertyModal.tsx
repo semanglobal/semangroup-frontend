@@ -1,6 +1,5 @@
 /*eslint-disable @typescript-eslint/no-explicit-any*/
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
     Modal,
     Box,
@@ -31,11 +30,17 @@ import {
     Image as ImageIcon
 } from '@mui/icons-material';
 import { toast } from 'react-toastify';
-import { fileUpload } from '../../services/fileUpload'; // assuming this is your upload service
+import { fileUpload } from '../../services/fileUpload';
 import { PropertyService } from '../../services/propertyService';
 import type { PropertyType } from '../../types/propertyType';
 
+// Import React Quill
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 interface Location {
+    lat: number;
+    long: number;
     address: string;
     city: string;
     state: string;
@@ -84,6 +89,27 @@ const EditPropertyModal: React.FC<EditPropertyModalProps> = ({
     const [uploadingThumbnail, setUploadingThumbnail] = useState(false);
     const [uploadingGallery, setUploadingGallery] = useState(false);
 
+    // React Quill modules configuration
+    const quillModules = useMemo(() => ({
+        toolbar: {
+            container: [
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'indent': '-1' }, { 'indent': '+1' }],
+                ['link', 'image'],
+                ['clean']
+            ],
+        },
+    }), []);
+
+    const quillFormats = [
+        'header',
+        'bold', 'italic', 'underline', 'strike',
+        'list', 'bullet', 'indent',
+        'link', 'image'
+    ];
+
     useEffect(() => {
         if (property) {
             setFormData(property);
@@ -104,13 +130,21 @@ const EditPropertyModal: React.FC<EditPropertyModalProps> = ({
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            location: { ...prev.location, [name]: value }
+            location: {
+                ...prev.location,
+                [name]: name === 'lat' || name === 'long' ? parseFloat(value) || 0 : value
+            }
         }));
     };
 
     const handleSelectChange = (e: SelectChangeEvent<string>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    // React Quill handler
+    const handleQuillChange = (value: string) => {
+        setFormData(prev => ({ ...prev, description: value }));
     };
 
     const handleAmenitiesChange = (event: SelectChangeEvent<string[]>) => {
@@ -211,7 +245,6 @@ const EditPropertyModal: React.FC<EditPropertyModalProps> = ({
             images: prev.images.filter((_, i) => i !== index),
         }));
     };
-
 
     // Upload functions
     const uploadThumbnailIfNew = async (): Promise<string> => {
@@ -354,17 +387,24 @@ const EditPropertyModal: React.FC<EditPropertyModalProps> = ({
                                         size="small"
                                     />
 
-                                    <TextField
-                                        fullWidth
-                                        label="Description"
-                                        name="description"
-                                        multiline
-                                        rows={3}
-                                        value={formData.description}
-                                        onChange={handleInputChange}
-                                        required
-                                        size="small"
-                                    />
+                                    {/* Replaced TextField with ReactQuill */}
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 1 }}>
+                                            Description *
+                                        </Typography>
+                                        <ReactQuill
+                                            value={formData.description}
+                                            onChange={handleQuillChange}
+                                            modules={quillModules}
+                                            formats={quillFormats}
+                                            theme="snow"
+                                            placeholder="Describe the property, its features, and nearby amenities..."
+                                            style={{
+                                                height: '200px',
+                                                marginBottom: '40px'
+                                            }}
+                                        />
+                                    </Box>
 
                                     <Grid container spacing={2}>
                                         <div>
@@ -484,6 +524,40 @@ const EditPropertyModal: React.FC<EditPropertyModalProps> = ({
                                                 onChange={handleLocationChange}
                                                 required
                                                 size="small"
+                                            />
+                                        </div>
+                                        <div>
+                                            <TextField
+                                                fullWidth
+                                                label="Latitude"
+                                                name="lat"
+                                                type="number"
+                                                inputProps={{
+                                                    step: "0.000001",
+                                                }}
+                                                value={formData.location.lat || ''}
+                                                onChange={handleLocationChange}
+                                                required
+                                                size="small"
+                                                placeholder="e.g., 6.524379"
+                                                helperText="Decimal format (e.g., 6.524379)"
+                                            />
+                                        </div>
+                                        <div>
+                                            <TextField
+                                                fullWidth
+                                                label="Longitude"
+                                                name="long"
+                                                type="number"
+                                                inputProps={{
+                                                    step: "0.000001",
+                                                }}
+                                                value={formData.location.long || ''}
+                                                onChange={handleLocationChange}
+                                                required
+                                                size="small"
+                                                placeholder="e.g., 3.379206"
+                                                helperText="Decimal format (e.g., 3.379206)"
                                             />
                                         </div>
                                     </Grid>
@@ -758,6 +832,7 @@ const EditPropertyModal: React.FC<EditPropertyModalProps> = ({
                             onClick={handleSubmit}
                             startIcon={loading ? <CircularProgress size={20} color="inherit" /> : null}
                             size="medium"
+                            style={{ backgroundColor: '#c20021' }}
                         >
                             {loading || uploadingThumbnail || uploadingGallery ? 'Updating...' : 'Update Property'}
                         </Button>

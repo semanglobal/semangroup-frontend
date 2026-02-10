@@ -23,6 +23,8 @@ export interface PropertyType {
     description: string;
     price: number;
     location: {
+        lat: number;
+        long: number;
         address: string;
         city: string;
         state: string;

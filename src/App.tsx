@@ -20,6 +20,7 @@ import QRCodeGenerator from "./pages/QRCodeGenerator";
 import QRCodeGeneratorScanner from "./pages/QRCodeGeneratorScanner";
 import Properties from "./pages/Properties";
 import Applications from "./pages/Applications";
+import VerifySales from "./pages/VerifySales";
 // import CleanTrackingParams from "./context/CleanTrackingParams";
 // import ReactGA from "react-ga4";
 
@@ -81,6 +82,7 @@ function App() {
             </div>
           }
         />
+        <Route path="/verify" element={<VerifySales />} />
 
         < Route element={<PagesLayout />}>
           <Route path="/" element={<Landing />} />

@@ -40,13 +40,13 @@ const Header = () => {
               <a
                 key={index}
                 onClick={() => handleMenuClick(item)}
-                className="relative text-gray-800 font-medium py-2 text-sm group"
+                className={`relative text-gray-800 font-medium py-2 text-sm group ${activeItem === item.path && 'text-primary'}`}
                 href={item.path}
               >
                 {item.name}
                 <span
                   className={`
-                    absolute bottom-0 left-0 h-0.5 bg-white
+                    absolute bottom-0 left-0 h-0.5 bg-primary
                     transition-all duration-300 ease-out
                     ${activeItem === item.path
                       ? "w-full"
@@ -59,11 +59,12 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <button
+          <a
             className="hidden md:block bg-primary text-white rounded-md hover:bg-primary transition-colors px-3 py-2 lg:px-4 lg:py-2.5 text-sm"
+            href="https://calendly.com/semanglobalgroup/30min" target="_blank" rel="noopener noreferrer"
           >
             Schedule an Appointment
-          </button>
+          </a>
 
           {/* Mobile Menu Button */}
           <button

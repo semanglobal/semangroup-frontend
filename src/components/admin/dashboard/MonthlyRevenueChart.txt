@@ -1,0 +1,565 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useEffect } from 'react';
+import {
+    Box,
+    Card,
+    CardContent,
+    Typography,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    CircularProgress,
+    Button,
+    Alert,
+    Grid,
+    Chip,
+    Paper,
+    useTheme,
+    alpha
+} from '@mui/material';
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    ResponsiveContainer,
+    Cell,
+    LineChart,
+    Line,
+    AreaChart,
+    Area
+} from 'recharts';
+import {
+    TrendingUp as TrendingUpIcon,
+    TrendingDown as TrendingDownIcon,
+    CalendarMonth as CalendarMonthIcon,
+    AttachMoney as AttachMoneyIcon,
+    BarChart as BarChartIcon,
+    ShowChart as ShowChartIcon,
+    AreaChart as AreaChartIcon,
+    Refresh as RefreshIcon
+} from '@mui/icons-material';
+import { DashboardService } from '../../../services/dashboardService';
+
+// Define the API response type
+interface MonthlyRevenueData {
+    month: number;
+    totalPaid: number;
+}
+
+interface RevenueResponse {
+    success: boolean;
+    year: number;
+    data: MonthlyRevenueData[];
+}
+
+interface MonthlyRevenueChartProps {
+    apiUrl?: string;
+    initialYear?: number;
+    showYearSelector?: boolean;
+    chartType?: 'bar' | 'line' | 'area';
+    height?: number;
+}
+
+const MonthlyRevenueChart: React.FC<MonthlyRevenueChartProps> = ({
+    initialYear = new Date().getFullYear(),
+    showYearSelector = true,
+    chartType = 'bar',
+    height = 400
+}) => {
+    const theme = useTheme();
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const [revenueData, setRevenueData] = useState<RevenueResponse | null>(null);
+    const [selectedYear, setSelectedYear] = useState<number>(initialYear);
+    const [selectedChartType, setSelectedChartType] = useState<'bar' | 'line' | 'area'>(chartType);
+
+    // Generate year options (current year and 5 years back)
+    const yearOptions = Array.from({ length: 6 }, (_, i) => new Date().getFullYear() - i);
+
+    // Month names for display
+    const monthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    // Format currency
+    const formatCurrency = (amount: number): string => {
+        return new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        }).format(amount);
+    };
+
+    // Custom tooltip component
+    const CustomTooltip = ({ active, payload, label }: any) => {
+        if (active && payload && payload.length) {
+            return (
+                <Paper
+                    elevation={3}
+                    sx={{
+                        p: 2,
+                        backgroundColor: alpha(theme.palette.background.paper, 0.95),
+                        border: `1px solid ${theme.palette.divider}`,
+                    }}
+                >
+                    <Typography variant="subtitle2" fontWeight="bold" gutterBottom>
+                        {monthNames[label - 1]} {revenueData?.year}
+                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <AttachMoneyIcon fontSize="small" color="primary" />
+                        <Typography variant="body2" fontWeight="bold">
+                            {formatCurrency(payload[0].value)}
+                        </Typography>
+                    </Box>
+                </Paper>
+            );
+        }
+        return null;
+    };
+
+    // Fetch revenue data
+    const fetchRevenueData = async (year: number) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            console.log('Fetching revenue data for year:', year);
+            // Assuming your API needs the year parameter
+            const response = await DashboardService.getMonthlyRevenue(year);
+            console.log('API Response:', response);
+            
+            if (response.success) {
+                console.log('Setting revenue data:', response);
+                setRevenueData(response);
+            } else {
+                setError('Failed to fetch revenue data');
+            }
+        } catch (err) {
+            console.error('Error fetching revenue data:', err);
+            setError('Failed to load revenue data. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Calculate statistics
+    const calculateStats = () => {
+        if (!revenueData) return null;
+
+        const monthlyData = revenueData.data;
+        const totalRevenue = monthlyData.reduce((sum, item) => sum + item.totalPaid, 0);
+        const nonZeroMonths = monthlyData.filter(item => item.totalPaid > 0);
+        const averageRevenue = nonZeroMonths.length > 0 ? totalRevenue / nonZeroMonths.length : 0;
+        const maxRevenue = Math.max(...monthlyData.map(item => item.totalPaid));
+        const maxMonth = monthlyData.find(item => item.totalPaid === maxRevenue)?.month || 0;
+        const monthsWithRevenue = nonZeroMonths.length;
+
+        return {
+            totalRevenue,
+            averageRevenue,
+            maxRevenue,
+            maxMonth,
+            monthsWithRevenue
+        };
+    };
+
+    useEffect(() => {
+        fetchRevenueData(selectedYear);
+    }, [selectedYear]);
+
+    // Prepare chart data with formatted month names
+    const chartData = revenueData?.data.map(item => ({
+        ...item,
+        monthName: monthNames[item.month - 1],
+        formattedAmount: formatCurrency(item.totalPaid)
+    })) || [];
+
+    const stats = calculateStats();
+
+    // Color for bars/lines based on value
+    const getColor = (value: number) => {
+        if (value === 0) return theme.palette.grey[300];
+        if (value < 1000000) return theme.palette.primary.light;
+        if (value < 5000000) return theme.palette.primary.main;
+        if (value < 10000000) return theme.palette.primary.dark;
+        return theme.palette.secondary.main;
+    };
+
+    // Debug: Log current state
+    useEffect(() => {
+        console.log('Current State:', {
+            loading,
+            error,
+            revenueData,
+            selectedYear,
+            chartData: chartData,
+            chartDataLength: chartData.length
+        });
+    }, [loading, error, revenueData, selectedYear, chartData]);
+
+    if (loading) {
+        return (
+            <Card sx={{ height: '100%' }}>
+                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: height }}>
+                    <CircularProgress />
+                </CardContent>
+            </Card>
+        );
+    }
+
+    if (error) {
+        return (
+            <Card sx={{ height: '100%' }}>
+                <CardContent>
+                    <Alert severity="error">{error}</Alert>
+                    <Box sx={{ mt: 2, textAlign: 'center' }}>
+                        <Button
+                            variant="outlined"
+                            onClick={() => fetchRevenueData(selectedYear)}
+                            startIcon={<RefreshIcon />}
+                        >
+                            Retry
+                        </Button>
+                    </Box>
+                </CardContent>
+            </Card>
+        );
+    }
+
+    return (
+        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                {/* Debug section - remove after testing */}
+                <Box sx={{ 
+                    mb: 2, 
+                    p: 2, 
+                    bgcolor: theme.palette.info.light, 
+                    borderRadius: 1,
+                    fontSize: '12px',
+                    fontFamily: 'monospace',
+                    display: 'none' // Change to 'block' to see debug info
+                }}>
+                    <Typography variant="caption" fontWeight="bold">Debug Info:</Typography>
+                    <div>Selected Year: {selectedYear}</div>
+                    <div>Chart Data Length: {chartData.length}</div>
+                    <div>Has Data: {revenueData ? 'Yes' : 'No'}</div>
+                    <div>Data Preview: {JSON.stringify(chartData.slice(0, 3))}</div>
+                    <div>Stats: {stats ? JSON.stringify(stats) : 'No stats'}</div>
+                </Box>
+
+                {/* Header */}
+                <Box sx={{ mb: 3 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                        <Typography variant="h5" fontWeight="bold" gutterBottom>
+                            Monthly Revenue {revenueData?.year}
+                        </Typography>
+
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <Chip
+                                icon={<BarChartIcon />}
+                                label="Bar"
+                                onClick={() => setSelectedChartType('bar')}
+                                color={selectedChartType === 'bar' ? 'primary' : 'default'}
+                                variant={selectedChartType === 'bar' ? 'filled' : 'outlined'}
+                                size="small"
+                            />
+                            <Chip
+                                icon={<ShowChartIcon />}
+                                label="Line"
+                                onClick={() => setSelectedChartType('line')}
+                                color={selectedChartType === 'line' ? 'primary' : 'default'}
+                                variant={selectedChartType === 'line' ? 'filled' : 'outlined'}
+                                size="small"
+                            />
+                            <Chip
+                                icon={<AreaChartIcon />}
+                                label="Area"
+                                onClick={() => setSelectedChartType('area')}
+                                color={selectedChartType === 'area' ? 'primary' : 'default'}
+                                variant={selectedChartType === 'area' ? 'filled' : 'outlined'}
+                                size="small"
+                            />
+                        </Box>
+                    </Box>
+
+                    {/* Year Selector */}
+                    {showYearSelector && (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+                            <CalendarMonthIcon color="action" />
+                            <FormControl size="small" sx={{ minWidth: 120 }}>
+                                <InputLabel>Year</InputLabel>
+                                <Select
+                                    value={selectedYear}
+                                    label="Year"
+                                    onChange={(e) => setSelectedYear(Number(e.target.value))}
+                                >
+                                    {yearOptions.map((year) => (
+                                        <MenuItem key={year} value={year}>
+                                            {year}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+
+                            {stats && (
+                                <Chip
+                                    label={`Total: ${formatCurrency(stats.totalRevenue)}`}
+                                    color="primary"
+                                    variant="outlined"
+                                    size="small"
+                                    sx={{ ml: 'auto' }}
+                                />
+                            )}
+                        </Box>
+                    )}
+                </Box>
+
+                {/* Statistics Cards */}
+                {stats && stats.totalRevenue > 0 && (
+                    <Grid container spacing={2} sx={{ mb: 3 }}>
+                        <div>
+                            <Paper
+                                elevation={0}
+                                sx={{
+                                    p: 2,
+                                    bgcolor: alpha(theme.palette.primary.main, 0.1),
+                                    borderRadius: 2,
+                                    border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+                                }}
+                            >
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                    <TrendingUpIcon color="primary" fontSize="small" />
+                                    <Typography variant="caption" color="text.secondary">
+                                        Total Revenue
+                                    </Typography>
+                                </Box>
+                                <Typography variant="h6" fontWeight="bold">
+                                    {formatCurrency(stats.totalRevenue)}
+                                </Typography>
+                            </Paper>
+                        </div>
+
+                        <div>
+                            <Paper
+                                elevation={0}
+                                sx={{
+                                    p: 2,
+                                    bgcolor: alpha(theme.palette.success.main, 0.1),
+                                    borderRadius: 2,
+                                    border: `1px solid ${alpha(theme.palette.success.main, 0.2)}`,
+                                }}
+                            >
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                    <AttachMoneyIcon color="success" fontSize="small" />
+                                    <Typography variant="caption" color="text.secondary">
+                                        Monthly Average
+                                    </Typography>
+                                </Box>
+                                <Typography variant="h6" fontWeight="bold">
+                                    {formatCurrency(stats.averageRevenue)}
+                                </Typography>
+                            </Paper>
+                        </div>
+
+                        <div>
+                            <Paper
+                                elevation={0}
+                                sx={{
+                                    p: 2,
+                                    bgcolor: alpha(theme.palette.warning.main, 0.1),
+                                    borderRadius: 2,
+                                    border: `1px solid ${alpha(theme.palette.warning.main, 0.2)}`,
+                                }}
+                            >
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                    <CalendarMonthIcon color="warning" fontSize="small" />
+                                    <Typography variant="caption" color="text.secondary">
+                                        Peak Month
+                                    </Typography>
+                                </Box>
+                                <Typography variant="h6" fontWeight="bold">
+                                    {monthNames[stats.maxMonth - 1]}
+                                </Typography>
+                            </Paper>
+                        </div>
+
+                        <div>
+                            <Paper
+                                elevation={0}
+                                sx={{
+                                    p: 2,
+                                    bgcolor: alpha(theme.palette.info.main, 0.1),
+                                    borderRadius: 2,
+                                    border: `1px solid ${alpha(theme.palette.info.main, 0.2)}`,
+                                }}
+                            >
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                    <BarChartIcon color="info" fontSize="small" />
+                                    <Typography variant="caption" color="text.secondary">
+                                        Active Months
+                                    </Typography>
+                                </Box>
+                                <Typography variant="h6" fontWeight="bold">
+                                    {stats.monthsWithRevenue} / 12
+                                </Typography>
+                            </Paper>
+                        </div>
+                    </Grid>
+                )}
+
+                {/* Chart Container */}
+                <Box sx={{ flex: 1, minHeight: height, position: 'relative' }}>
+                    {chartData.length === 0 || (stats && stats.totalRevenue === 0) ? (
+                        <Box sx={{ 
+                            height: '100%', 
+                            display: 'flex', 
+                            flexDirection: 'column', 
+                            justifyContent: 'center', 
+                            alignItems: 'center',
+                            color: theme.palette.text.secondary
+                        }}>
+                            <BarChartIcon sx={{ fontSize: 60, mb: 2, opacity: 0.5 }} />
+                            <Typography variant="h6" gutterBottom>
+                                No Revenue Data
+                            </Typography>
+                            <Typography variant="body2">
+                                No revenue data available for {selectedYear}
+                            </Typography>
+                        </Box>
+                    ) : (
+                        <ResponsiveContainer width="100%" height="100%">
+                            {selectedChartType === 'bar' ? (
+                                <BarChart 
+                                    data={chartData} 
+                                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.divider} />
+                                    <XAxis 
+                                        dataKey="monthName"
+                                        stroke={theme.palette.text.secondary}
+                                        tick={{ fill: theme.palette.text.secondary }}
+                                    />
+                                    <YAxis 
+                                        stroke={theme.palette.text.secondary}
+                                        tick={{ fill: theme.palette.text.secondary }}
+                                        tickFormatter={(value) => formatCurrency(value).replace('NGN', '₦')}
+                                    />
+                                    <Tooltip content={<CustomTooltip />} />
+                                    <Legend />
+                                    <Bar 
+                                        name="Revenue"
+                                        dataKey="totalPaid"
+                                        radius={[4, 4, 0, 0]}
+                                    >
+                                        {chartData.map((entry, index) => (
+                                            <Cell 
+                                                key={`cell-${index}`} 
+                                                fill={getColor(entry.totalPaid)} 
+                                            />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            ) : selectedChartType === 'line' ? (
+                                <LineChart 
+                                    data={chartData} 
+                                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.divider} />
+                                    <XAxis 
+                                        dataKey="monthName"
+                                        stroke={theme.palette.text.secondary}
+                                        tick={{ fill: theme.palette.text.secondary }}
+                                    />
+                                    <YAxis 
+                                        stroke={theme.palette.text.secondary}
+                                        tick={{ fill: theme.palette.text.secondary }}
+                                        tickFormatter={(value) => formatCurrency(value).replace('NGN', '₦')}
+                                    />
+                                    <Tooltip content={<CustomTooltip />} />
+                                    <Legend />
+                                    <Line 
+                                        name="Revenue"
+                                        type="monotone"
+                                        dataKey="totalPaid"
+                                        stroke={theme.palette.primary.main}
+                                        strokeWidth={3}
+                                        dot={{ r: 4 }}
+                                        activeDot={{ r: 6 }}
+                                    />
+                                </LineChart>
+                            ) : (
+                                <AreaChart 
+                                    data={chartData} 
+                                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.divider} />
+                                    <XAxis 
+                                        dataKey="monthName"
+                                        stroke={theme.palette.text.secondary}
+                                        tick={{ fill: theme.palette.text.secondary }}
+                                    />
+                                    <YAxis 
+                                        stroke={theme.palette.text.secondary}
+                                        tick={{ fill: theme.palette.text.secondary }}
+                                        tickFormatter={(value) => formatCurrency(value).replace('NGN', '₦')}
+                                    />
+                                    <Tooltip content={<CustomTooltip />} />
+                                    <Legend />
+                                    <Area 
+                                        name="Revenue"
+                                        type="monotone"
+                                        dataKey="totalPaid"
+                                        stroke={theme.palette.primary.main}
+                                        fill={alpha(theme.palette.primary.main, 0.3)}
+                                        strokeWidth={2}
+                                    />
+                                </AreaChart>
+                            )}
+                        </ResponsiveContainer>
+                    )}
+                </Box>
+
+                {/* Footer - Monthly Breakdown */}
+                {stats && stats.totalRevenue > 0 && (
+                    <Box sx={{ mt: 3, pt: 2, borderTop: `1px solid ${theme.palette.divider}` }}>
+                        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                            Monthly Breakdown - {revenueData?.year}
+                        </Typography>
+                        <Grid container spacing={1}>
+                            {chartData.map((item) => (
+                                <Grid item xs={3} sm={2} md={1} key={item.month}>
+                                    <Paper
+                                        elevation={0}
+                                        sx={{
+                                            p: 1,
+                                            textAlign: 'center',
+                                            bgcolor: item.totalPaid > 0 ? alpha(theme.palette.primary.main, 0.05) : 'transparent',
+                                            border: `1px solid ${item.totalPaid > 0 ? alpha(theme.palette.primary.main, 0.1) : theme.palette.divider}`,
+                                            borderRadius: 1,
+                                        }}
+                                    >
+                                        <Typography variant="caption" color="text.secondary" display="block">
+                                            {item.monthName}
+                                        </Typography>
+                                        <Typography variant="body2" fontWeight={item.totalPaid > 0 ? 'bold' : 'normal'}>
+                                            {formatCurrency(item.totalPaid)}
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
+                )}
+            </CardContent>
+        </Card>
+    );
+};
+
+export default MonthlyRevenueChart;
