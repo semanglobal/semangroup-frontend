@@ -8,6 +8,9 @@ import jsPDF from 'jspdf';
 import html2canvas from "html2canvas";
 import Select from 'react-select';
 import type { ApplicationCreate } from '../../../types/application';
+import ApplicationModal from './ApplicationModal';
+import { ApplicationService } from '../../../services/applicationService';
+import { toast } from 'react-toastify';
 
 interface FilterState {
     siteName?: string;
@@ -18,12 +21,10 @@ interface FilterState {
 interface ApplicationListProps {
     data?: ApplicationCreate[];
     onOpenUploadModal?: () => void;
-    onDelete?: (id: string) => void;
     onEdit?: (data: ApplicationCreate) => void;
     setEditData?: (data: ApplicationCreate | null) => void;
     loading?: boolean;
     isLoading?: boolean;
-    onViewDetails?: (data: ApplicationCreate) => void;
     onChangePaymentStatus?: (id: string) => void;
     onMarkAsPaid?: (id: string) => void;
     currentPage: number;
@@ -33,6 +34,7 @@ interface ApplicationListProps {
     itemsPerPage: number;
     setSearchTerm: (data: string) => void;
     onFilter?: (filters: FilterState) => void;
+    onDelete?: (data: ApplicationCreate) => void;
 }
 
 interface RowActionMenuProps {
@@ -40,16 +42,17 @@ interface RowActionMenuProps {
     application: ApplicationCreate;
     onClose: () => void;
     onEdit?: (data: ApplicationCreate) => void;
+    onDelete?: (data: ApplicationCreate) => void;
     onOpenUploadModal?: () => void;
-    onDelete?: (id: string) => void;
     onViewDetails?: (data: ApplicationCreate) => void;
     onChangePaymentStatus?: (id: string) => void;
     onMarkAsPaid?: (id: string) => void;
     handleDownload?: (buyer: string, id: string) => void;
+    setOpenView: () => void
 }
 
 const RowActionMenu: React.FC<RowActionMenuProps> = ({
-    anchorRect, application, onClose, onEdit, onDelete, onOpenUploadModal, onViewDetails, onChangePaymentStatus, onMarkAsPaid, handleDownload
+    anchorRect, application, onClose, onEdit, onDelete, onOpenUploadModal, onViewDetails, onChangePaymentStatus, onMarkAsPaid, handleDownload, setOpenView
 }) => {
     const menuRef = useRef<HTMLDivElement>(null);
 
@@ -81,7 +84,7 @@ const RowActionMenu: React.FC<RowActionMenuProps> = ({
         >
             <button
                 className="w-full flex items-center px-3 py-2 text-sm hover:bg-primary hover:text-white rounded-t-md"
-                onClick={() => { onViewDetails?.(application); onClose(); }}
+                onClick={() => { onViewDetails?.(application); onClose(); setOpenView() }}
             >
                 <Eye className="w-4 h-4 mr-2" /> View Details
             </button>
@@ -99,7 +102,7 @@ const RowActionMenu: React.FC<RowActionMenuProps> = ({
             </button>
             <button
                 className="w-full flex items-center px-3 py-2 text-sm hover:bg-red-600 hover:text-white rounded-b-md text-red-600"
-                onClick={() => { onDelete?.(application._id!); onClose(); }}
+                onClick={() => { onDelete?.(application); onClose(); }}
             >
                 <Trash2 className="w-4 h-4 mr-2" /> Delete
             </button>
@@ -109,12 +112,14 @@ const RowActionMenu: React.FC<RowActionMenuProps> = ({
 };
 
 const ApplicationList: React.FC<ApplicationListProps> = ({
-    data = [], onOpenUploadModal, onEdit, onDelete, setEditData, loading, isLoading, onViewDetails, onChangePaymentStatus, onMarkAsPaid, currentPage, totalPages, onPageChange, totalCount, itemsPerPage, setSearchTerm, onFilter
+    data = [], onOpenUploadModal, onEdit, setEditData, loading, isLoading, onChangePaymentStatus, onMarkAsPaid, currentPage, totalPages, onPageChange, totalCount, itemsPerPage, setSearchTerm, onFilter, onDelete
 }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [menuAnchor, setMenuAnchor] = useState<{ rect: DOMRect; application: ApplicationCreate } | null>(null);
     const tableRef = useRef<HTMLTableElement>(null);
     const [filters, setFilters] = useState<FilterState>({});
+    const [openView, setOpenView] = useState<boolean>(false)
+    const [viewData, setViewData] = useState<ApplicationCreate>({} as ApplicationCreate)
 
     // QR Code
     const [downloadModal, setOpenDownloadModal] = useState<boolean>(false)
@@ -133,6 +138,10 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
 
         setQrValue(data);
     };
+
+    const onViewDetails = (data: ApplicationCreate) => {
+        setViewData(data)
+    }
 
     const handleDownload = () => {
         const canvas = canvasRef.current;
@@ -668,6 +677,15 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
                     onChangePaymentStatus={onChangePaymentStatus}
                     onMarkAsPaid={onMarkAsPaid}
                     handleDownload={openDownloadModal}
+                    setOpenView={() => setOpenView(true)}
+                />
+            )}
+
+            {openView && (
+                <ApplicationModal
+                    data={viewData}
+                    isOpen={openView}
+                    onClose={() => setOpenView(false)}
                 />
             )}
         </div>
