@@ -81,6 +81,9 @@ export default function ReachOut() {
     if (!formData.comments.trim()) {
       newErrors.comments = 'Comments are required';
     }
+    if (formData.comments.trim().length < 5) {
+      newErrors.comments = 'Comments must be more than 5 characters';
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -122,7 +125,7 @@ export default function ReachOut() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4" id='reachOut'>
-      <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+      <div className="max-w-360 mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Reach Out</h1>
         <p className="text-gray-600 mb-8 pb-8 border-b border-gray-200">
           Let us know to give you a call about any questions you might have.
@@ -351,7 +354,7 @@ export default function ReachOut() {
               className={`rounded transition-colors duration-300 text-white px-6 py-3 mt-4 md:col-span-2 w-max
                                 ${loading
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-primary hover:bg-primary'
+                  : 'bg-primary hover:bg-hover'
                 }`}
             >
               {loading ? (
