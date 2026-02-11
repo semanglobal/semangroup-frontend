@@ -15,7 +15,7 @@ export default function HeroContact() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 flex h-full items-center px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto" >
+            <div className="relative z-10 flex h-full items-center px-4 sm:px-6 lg:px-8 max-w-360 mx-auto" >
                 <div className="max-w-3xl text-left text-white">
                     <p className="mb-3 text-sm 2xl:text-xl font-light tracking-widest uppercase text-gray-300">
                         Hear from us?

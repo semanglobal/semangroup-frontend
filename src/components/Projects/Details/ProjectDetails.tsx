@@ -305,7 +305,7 @@ const ProjectDetails = () => {
                 ) : (
                     <>
                         {/* Property Overview */}
-                        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12'>
+                        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 m-4 md:m-8'>
                             {/* Left Column - Gallery */}
                             <div className='lg:col-span-2'>
                                 {/* Main Image */}
@@ -405,7 +405,7 @@ const ProjectDetails = () => {
                                     </div>
 
                                     <button className='w-full mt-6 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors'>
-                                        Schedule Viewing
+                                        Purchase Property
                                     </button>
                                 </div>
 
@@ -427,7 +427,7 @@ const ProjectDetails = () => {
                         </div>
 
                         {/* Description */}
-                        <div className='bg-white rounded-xl shadow-lg p-8 mb-12'>
+                        <div className='bg-white rounded-xl shadow-lg m-4 md:m-8 p-4 md:p-8 mb-12'>
                             <h2 className='text-2xl font-bold text-gray-900 mb-6'>Property Description</h2>
                             <div
                                 className='prose prose-lg max-w-none text-gray-600'
@@ -437,8 +437,8 @@ const ProjectDetails = () => {
 
                         {/* Location Details with Google Maps Iframe */}
                         {hasLocation && (
-                            <div className='bg-white rounded-xl shadow-lg overflow-hidden mb-12'>
-                                <div className='p-8'>
+                            <div className='bg-white rounded-xl shadow-lg overflow-hidden mb-12 m-4 md:m-8'>
+                                <div className='p-4 md:p-8'>
                                     <h2 className='text-2xl font-bold text-gray-900 mb-6'>Location Details</h2>
                                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
                                         <div className='lg:col-span-1 space-y-6'>
