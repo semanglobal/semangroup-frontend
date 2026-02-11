@@ -23,6 +23,11 @@ export const ApplicationService = {
         return response.data;
     },
 
+    deleteApplication: async (id: string): Promise<any> => {
+        const response = await api.delete(`/api/application/${id}`);
+        return response.data;
+    },
+
     getAllApplications: async (params?: {
         page?: number;
         limit?: number;

@@ -59,7 +59,6 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
     const handleDownload = () => {
         const canvas = canvasRef.current;
-        console.log(canvas)
 
         if (canvas) {
             const pngUrl = canvas.toDataURL('image/png');
