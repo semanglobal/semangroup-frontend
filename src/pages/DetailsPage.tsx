@@ -9,7 +9,7 @@ const DetailsPage = () => {
     return (
         <div>
             <ProjectDetails />
-            <ReachOut />
+            {/* <ReachOut /> */}
         </div>
     )
 }

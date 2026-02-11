@@ -8,7 +8,15 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const activeItem = location.pathname;
+  const pathname = location.pathname;
+
+  const isActive = (path: string) => {
+    if (path === "/projects") {
+      return pathname.startsWith("/project");
+    }
+
+    return pathname === path;
+  };
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -40,7 +48,7 @@ const Header = () => {
               <a
                 key={index}
                 onClick={() => handleMenuClick(item)}
-                className={`relative text-gray-800 font-medium py-2 text-sm group ${activeItem === item.path && 'text-primary'}`}
+                className={`relative text-gray-800 font-medium py-2 text-sm group ${isActive(item.path) && 'text-primary'}`}
                 href={item.path}
               >
                 {item.name}
@@ -48,10 +56,9 @@ const Header = () => {
                   className={`
                     absolute bottom-0 left-0 h-0.5 bg-primary
                     transition-all duration-300 ease-out
-                    ${activeItem === item.path
+                    ${isActive(item.path)
                       ? "w-full"
-                      : "w-0 group-hover:w-full"
-                    }
+                      : "w-0 group-hover:w-full"}
                   `}
                 />
               </a>
@@ -122,10 +129,10 @@ const Header = () => {
                       className={`
                         absolute bottom-2 left-4 h-0.5 bg-primary
                         transition-all duration-300 ease-out
-                        ${activeItem === item.path
-                          ? "w-1/2"
-                          : "w-0 group-hover:w-1/2"
-                        }
+                        ${isActive(item.path)
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"}
+
                       `}
                     />
                   </a>

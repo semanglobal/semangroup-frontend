@@ -27,10 +27,10 @@ const Gallery = () => {
                                 <span className='w-1 h-1 rounded-full bg-primary'></span>
                             </div>
                         </div>
-                        <p className="font-semibold text-5xl mt-2">Our Portfolio</p>
+                        <p className="font-semibold text-5xl mt-2">Our Projects</p>
                     </div>
 
-                    <a className="flex items-center gap-2 px-16 font-medium h-14 bg-primary hover:bg-black transition-colors duration-500 cursor-pointer" href='projects'>
+                    <a className="flex items-center gap-2 px-16 font-medium h-14 bg-primary hover:bg-black transition-colors duration-500 cursor-pointer rounded-xl" href='projects'>
                         <p className='text-white text-xl'>View All</p>
                         <ArrowForward className='text-white' />
                     </a>

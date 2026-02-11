@@ -29,40 +29,19 @@ export const PropertyService = {
         }
     },
 
-
     getAllProperties: async (): Promise<PropertyType[]> => {
-        try {
-            const response = await api.get(`/api/property`)
-            return response.data.data
-        } catch (error) {
-            console.log(error)
-            throw error;
-        }
+        const response = await api.get(`/api/property`)
+        return response.data.data
+    },
+
+    getPropertyBySlug: async (slug: string): Promise<PropertyType> => {
+        const response = await api.get(`/api/property/get-by-slug/${slug}`)
+        return response.data.data
     },
 
     deleteProperty: async (id: string): Promise<void> => {
         try {
             const response = await api.delete(`/api/property/${id}`)
-            return response.data
-        } catch (error) {
-            console.log(error)
-            throw error;
-        }
-    },
-
-    sendVerificationEmail: async (payload: sendVerificationCodeType): Promise<sendVerificationCodeType> => {
-        try {
-            const response = await api.post(`/api/auth/send-verification-code`, payload)
-            return response.data
-        } catch (error) {
-            console.log(error)
-            throw error;
-        }
-    },
-
-    changePassword: async (payload: changePassword): Promise<changePassword> => {
-        try {
-            const response = await api.post(`/api/Auth/changePassword`, payload)
             return response.data
         } catch (error) {
             console.log(error)
