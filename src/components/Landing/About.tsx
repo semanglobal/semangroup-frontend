@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react'
 import { Home, ShieldCheck, TrendingUp, CheckCircle } from 'lucide-react'
 
@@ -86,7 +87,7 @@ const Benefits = () => {
     }, [hasAnimated])
 
     return (
-        <section className='w-full bg-gradient-to-b from-white to-orange-50 py-16 md:py-24'>
+        <section className='w-full bg-linear-to-b from-white to-orange-50 py-16 md:py-24'>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className='text-center mb-12 md:mb-16'>
@@ -121,7 +122,7 @@ const Benefits = () => {
                                 <div className="space-y-2">
                                     {benefit.features.map((feature, idx) => (
                                         <div key={idx} className="flex items-center gap-2">
-                                            <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-500 flex-shrink-0" />
+                                            <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-500 shrink-0" />
                                             <span className="text-gray-700 text-sm md:text-base">{feature}</span>
                                         </div>
                                     ))}
@@ -134,7 +135,7 @@ const Benefits = () => {
                 {/* Stats Section with Counter */}
                 <div 
                     ref={statsRef}
-                    className="bg-gradient-to-r from-primary to-primary rounded-2xl p-8 md:p-12 text-white"
+                    className="bg-linear-to-r from-primary to-primary rounded-2xl p-8 md:p-12 text-white"
                 >
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                         <div className="text-center">
