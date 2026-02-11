@@ -232,7 +232,7 @@ const ProjectDetails = () => {
         <div className='min-h-screen bg-gray-50'>
             {/* Header - with fallback background */}
             <div
-                className="w-full h-[70vh] relative flex items-center justify-center"
+                className="w-full h-[80vh] relative flex items-center justify-center"
                 style={{
                     background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${property.thumbnail || '/default-property.jpg'})`,
                     backgroundPosition: 'center',
