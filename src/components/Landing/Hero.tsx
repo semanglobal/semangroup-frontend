@@ -10,17 +10,17 @@ const Hero = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-4">
-                        <div className="space-y-4">
-                            <p className="text-lg md:text-xl text-gray-600">
+                        <div className="space-y-1">
+                            <p className="text-sm md:text-xl text-gray-600">
                                 Welcome to Seman Global Project Ltd.
                             </p>
 
-                            <h1 className="text-6xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+                            <h1 className="text-[12vw] md:text-5xl lg:text-6xl font-bold text-gray-900 leading-12 lg:leading-16">
                                 You can own a Home{' '}
                                 <span className="text-primary">with us</span>
                             </h1>
 
-                            <p className="lg:text-xl text-gray-600 leading-relaxed">
+                            <p className="text-sm lg:text-xl text-gray-600 leading-relaxed">
                                 We are a real estate company dedicated to providing affordable
                                 housing options in Nigeria, and across Africa. As a real estate
                                 developer, we specialize in designing homes to suit different
@@ -33,8 +33,8 @@ const Hero = () => {
                             <button className="
                                 border-2 border-primary text-primary
                                 hover:bg-orange-50 transition-colors
-                                px-6 py-3
-                                text-base
+                                px-4 md:px-6 py-2 md:py-3
+                                text-xs
                                 md:text-lg
                                 rounded-lg
                                 flex items-center justify-center gap-2
@@ -47,8 +47,8 @@ const Hero = () => {
                                 className="
                                     bg-primary hover:bg-primary transition-colors
                                     text-white
-                                    px-6 py-3
-                                    text-base
+                                    px-4 md:px-6 py-2 md:py-3
+                                    text-xs
                                     md:text-lg
                                     rounded-lg
                                     flex items-center justify-center gap-2
