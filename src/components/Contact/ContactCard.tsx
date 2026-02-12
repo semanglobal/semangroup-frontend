@@ -65,7 +65,7 @@ const ContactCard = () => {
 
                 {/* INFO CARDS */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div className="h-40 w-full border flex items-center gap-4 p-6">
+                    <div className="lg:h-40 w-full border flex items-center gap-4 p-6">
                         <div className="bg-orange-100 p-4">
                             <MapPinned className="text-amber-600" size={50} />
                         </div>
