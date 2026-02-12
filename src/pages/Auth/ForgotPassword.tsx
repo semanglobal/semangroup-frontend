@@ -92,7 +92,7 @@ const ForgotPassword = () => {
                 <div className="text-center mb-8">
                     <div className="flex justify-center mb-6">
                         <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/20">
-                            <img src="/fasma_logo.png" alt="" />
+                            <img src="/logo.png" alt="" />
                         </div>
                     </div>
 

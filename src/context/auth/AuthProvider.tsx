@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    * --------------------------- */
   const logout = useCallback(() => {
     localStorage.removeItem('seman_token');
-    localStorage.removeItem('fasma_role');
+    localStorage.removeItem('seman_role');
     sessionStorage.removeItem('activeNavItem');
     sessionStorage.removeItem('filters');
 
@@ -103,7 +103,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('seman_token', token);
 
     const decoded = jwtDecode<JwtPayload>(token);
-    localStorage.setItem('fasma_role', decoded.role || '');
+    localStorage.setItem('seman_role', decoded.role || '');
 
     setUser({
       id: decoded.id || '',

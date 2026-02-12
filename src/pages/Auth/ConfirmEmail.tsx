@@ -130,8 +130,6 @@ const ConfirmEmail: React.FC<ConfirmEmailProps> = () => {
       // Simulate API call to resend OTP
       await AuthService.sendVerificationEmail(payload);
 
-      console.log('Resending OTP...');
-
       // Reset state and start countdown
       setOtp(['', '', '', '', '', '']);
       setCountdown(30);

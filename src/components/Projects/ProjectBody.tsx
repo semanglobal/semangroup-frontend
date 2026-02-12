@@ -51,8 +51,9 @@ const ProjectBody = () => {
         try {
             const res = await PropertyService.getAllProperties()
             setProjects(res)
+            setError('No Project Found')
         } catch (error: any) {
-            console.error(error)
+            console.log(error)
             setError(error.response.data.message || 'Failed to load property details')
             setProjects([])
         } finally {
@@ -67,7 +68,7 @@ const ProjectBody = () => {
     const handleRetry = () => {
         fetchProjects()
     }
-
+    
     if (loading && projects.length === 0) {
         return (
             <div className="min-h-[58dvh] flex flex-col items-center justify-center bg-gray-50 p-4">

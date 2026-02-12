@@ -53,23 +53,8 @@ const DashboardCards = () => {
             <Box sx={{ mb: 4 }}>
                 <div className="flex justify-between items-center mb-4">
                     <Typography variant="h6" sx={{ mb: 2, fontWeight: 600, color: '#1f2937' }}>
-                        Platform Summary
+                        Application Summary
                     </Typography>
-                    {/* <Button
-                        variant="outlined"
-                        color="success"
-                        size="small"
-                        onClick={handleUpdateAllSchools}
-                        disabled={actionLoading === "update-all-schools"}
-                        sx={{
-                            textTransform: 'none',
-                            borderRadius: '6px',
-                            fontWeight: 600,
-                            padding: '6px 12px',
-                        }}
-                    >
-                        {actionLoading === "update-all-schools" ? 'Processing...' : 'Update All Schools'}
-                    </Button> */}
                 </div>
 
                 <Grid container spacing={3}>
@@ -77,7 +62,7 @@ const DashboardCards = () => {
                         {/* Total Schools */}
                         <SummaryCard
                             title="Total Applications"
-                            value={cardData?.totalApplications}
+                            value={cardData?.totalApplications || 0}
                             // subtitle={`${summaryData.growth.overall} growth`}
                             icon={SchoolIcon}
                             color="primary"
@@ -87,7 +72,7 @@ const DashboardCards = () => {
                         {/* Total Students */}
                         <SummaryCard
                             title="Total Amount Paid"
-                            value={cardData?.totalAmountPaid}
+                            value={cardData?.totalAmountPaid || 0}
                             // subtitle={`${summaryData.growth.students} growth`}
                             icon={PersonIcon}
                             color="success"
@@ -97,7 +82,7 @@ const DashboardCards = () => {
                         {/* Total Teachers */}
                         <SummaryCard
                             title="Total Outstanding"
-                            value={cardData?.totalAmountDue}
+                            value={cardData?.totalAmountDue || 0}
                             // subtitle={`${summaryData.growth.teachers} growth`}
                             icon={PersonIcon}
                             color="warning"
@@ -107,7 +92,7 @@ const DashboardCards = () => {
                         {/* Total Admins */}
                         <SummaryCard
                             title="Total Infrastructure Fees"
-                            value={cardData?.totalInfrastructureFees}
+                            value={cardData?.totalInfrastructureFees || 0}
                             // subtitle={`${summaryData.growth.admins} growth`}
                             icon={AdminPanelSettingsIcon}
                             color="primary"
