@@ -20,6 +20,7 @@ import {
 import { Link as LinkScroll } from 'react-scroll'
 import { type PropertyType } from '../../../types/propertyType'
 import { PropertyService } from '../../../services/propertyService'
+import PaymentModal from '../../admin/payment/PaymentModal'
 
 // Define a default property structure to avoid undefined errors
 const defaultProperty: any = {
@@ -173,6 +174,9 @@ const ProjectDetails = () => {
     const handleRetry = () => {
         fetchData()
     }
+
+    const [openPaymentModal, setOpenPaymentModal] = useState<boolean>(false);
+    const [amount, setAmount] = useState<number>(0)
 
     // Loading state with better UI
     if (isInitialLoad && isLoading) {
@@ -404,7 +408,7 @@ const ProjectDetails = () => {
                                         </div>
                                     </div>
 
-                                    <button className='w-full mt-6 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors'>
+                                    <button className='w-full mt-6 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors' onClick={() => {setOpenPaymentModal(true); setAmount(property.price)}}>
                                         Purchase Property
                                     </button>
                                 </div>
@@ -561,6 +565,12 @@ const ProjectDetails = () => {
                     </>
                 )}
             </div>
+
+            <PaymentModal
+                isOpen={openPaymentModal}
+                onClose={() => setOpenPaymentModal(false)}
+                amount={amount}
+            />
         </div>
     )
 }
