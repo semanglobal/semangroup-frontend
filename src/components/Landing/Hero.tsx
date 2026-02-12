@@ -30,7 +30,7 @@ const Hero = () => {
 
                         {/* Buttons */}
                         <div className="flex flex-row gap-4">
-                            <button className="
+                            <a href="/about-us" className="
                                 border-2 border-primary text-primary
                                 hover:bg-orange-50 transition-colors
                                 px-4 md:px-6 py-2 md:py-3
@@ -41,7 +41,7 @@ const Hero = () => {
                             ">
                                 Learn More
                                 <ArrowForward />
-                            </button>
+                            </a>
 
                             <a href="/projects" 
                                 className="
