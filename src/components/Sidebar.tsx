@@ -349,15 +349,15 @@ const Sidebar: React.FC<SidebarProps> = ({
                             }`}
                     >
                         <div className="w-8 h-8 bg-white shrink-0 rounded-full p-0.5 flex items-center justify-center overflow-hidden">
-                            <img src={'/fasma_logo.png'} alt="" className="object-cover h-full w-full" />
+                            <img src={'/logo.png'} alt="" className="object-cover h-full w-full" />
                         </div>
                         {!isCollapsed && (
                             <div>
                                 <h1 className="text-md font-bold bg-white bg-clip-text text-transparent">
-                                    FASMA
+                                    Seman Global
                                 </h1>
                                 <p className="text-xs text-slate-400">
-                                    Super admin panel
+                                    Admin panel
                                 </p>
                             </div>
                         )}

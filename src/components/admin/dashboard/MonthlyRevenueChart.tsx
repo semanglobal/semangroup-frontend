@@ -59,7 +59,6 @@ const MonthlyRevenueChart = () => {
             const response = await DashboardService.getMonthlyRevenue(year);
 
             if (response.success) {
-                console.log('Setting revenue data:', response);
                 setRevenueData(response.data);
             } else {
                 setError('Failed to fetch revenue data');

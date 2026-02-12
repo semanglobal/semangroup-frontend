@@ -123,13 +123,13 @@ const ResetPassword = () => {
     !passwordValidation.number || !passwordValidation.specialChar;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black p-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 to-black p-4">
       <div className="w-full max-w-md">
         {/* Super Admin Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-6">
             <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/20">
-              <img src="/fasma_logo.png" alt="" />
+              <img src="/logo.png" alt="" />
             </div>
           </div>
           
@@ -269,7 +269,7 @@ const ResetPassword = () => {
               className={`w-full py-4 px-4 rounded-xl focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 font-semibold flex items-center justify-center ${
                 validation || isSubmitting
                   ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg shadow-purple-500/25 cursor-pointer'
+                  : 'bg-linear-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg shadow-purple-500/25 cursor-pointer'
               }`}
             >
               {isSubmitting ? (

@@ -56,7 +56,7 @@ function App() {
 
   const ProtectedSuperAdminRoute = ({ children }: { children: React.ReactNode }) => {
     const token = localStorage.getItem('seman_token');
-    const role = localStorage.getItem('fasma_role');
+    const role = localStorage.getItem('seman_role');
     return token && role === 'superAdmin' ? children : <Navigate to="/login" />;
   };
 
