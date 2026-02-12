@@ -21,12 +21,33 @@ import QRCodeGeneratorScanner from "./pages/QRCodeGeneratorScanner";
 import Properties from "./pages/Properties";
 import Applications from "./pages/Applications";
 import VerifySales from "./pages/VerifySales";
+import Payments from "./pages/Payments";
+import { useEffect } from "react";
+import VerifyPayment from "./pages/VerifyPayment";
 // import CleanTrackingParams from "./context/CleanTrackingParams";
 // import ReactGA from "react-ga4";
 
 // ReactGA.initialize("G-XXXXXXXXXX");
+const chatId = import.meta.env.VITE_CHAT_ID
+
 function App() {
   const { user } = useAuth();
+
+  useEffect(() => {
+    const configScript = document.createElement("script");
+    configScript.innerHTML = `
+            window.chatbaseConfig = {
+                chatbotId: '${chatId}'
+            };
+        `;
+    document.body.appendChild(configScript);
+
+    const chatbaseScript = document.createElement("script");
+    chatbaseScript.src = "https://www.chatbase.co/embed.min.js";
+    chatbaseScript.defer = true;
+    chatbaseScript.setAttribute("chatbotId", `${chatId}`);
+    document.body.appendChild(chatbaseScript);
+  }, []);
 
   const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const token = localStorage.getItem('seman_token');
@@ -54,6 +75,7 @@ function App() {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="properties" element={<Properties />} />
           <Route path="applications" element={<Applications />} />
+          <Route path="payments" element={<Payments />} />
           <Route path="settings" element={<UserProfilePage />} />
         </ Route>
 
@@ -83,6 +105,7 @@ function App() {
           }
         />
         <Route path="/verify" element={<VerifySales />} />
+        <Route path="/payments/verify" element={<VerifyPayment />} />
 
         < Route element={<PagesLayout />}>
           <Route path="/" element={<Landing />} />

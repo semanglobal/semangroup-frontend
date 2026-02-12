@@ -75,12 +75,12 @@ const Sidebar: React.FC<SidebarProps> = ({
             path: `/${base}/applications`,
             roles: ["admin", "superAdmin"],
         },
-        // {
-        //     icon: User,
-        //     label: "Students",
-        //     path: `/${base}/students`,
-        //     roles: ["admin", "superAdmin", "teacher", "guardian"],
-        // },
+        {
+            icon: HandCoins,
+            label: "Payments",
+            path: `/${base}/payments`,
+            roles: ["admin", "superAdmin", "teacher", "guardian"],
+        },
         // {
         //     icon: Users,
         //     label: "Guardians",
