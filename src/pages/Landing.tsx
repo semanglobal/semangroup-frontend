@@ -2,8 +2,9 @@ import React from 'react'
 import Hero from '../components/Landing/Hero'
 import Gallery from '../components/Landing/Gallery'
 import StatsBanner from '../components/Landing/StatsBanner'
-import About from '../components/Landing/About'
-import Benefits from '../components/Landing/About'
+import About from '../components/Landing/Benefits'
+import Benefits from '../components/Landing/Benefits'
+import StatsCounter from '../components/Landing/StatsCounter'
 
 const Landing = () => {
     return (
@@ -11,6 +12,7 @@ const Landing = () => {
             <Hero />
             <Benefits />
             <Gallery />
+            <StatsCounter />
             {/* <StatsBanner /> */}
         </div>
     )
