@@ -7,8 +7,12 @@ import logo1 from './logo1.png'
 import logo2 from './logo2.png'
 import logo3 from './logo3.png'
 import contact_us from './contact-us.jpg'
+import se1 from './se1.jpeg'
+import se2 from './se2.jpeg'
+import se3 from './se3.jpeg'
+import se4 from './se4.jpeg'
 
-export const imageAssets = { no_data, img1, img2, img3, logo, logo1, logo2, logo3, contact_us };
+export const imageAssets = { no_data, img1, img2, img3, logo, logo1, logo2, logo3, contact_us, se1, se2, se3, se4 };
 
 import bg_pattern_6 from './bg_pattern_6.png';
 import bg_pattern_7 from './bg_pattern_7.png';

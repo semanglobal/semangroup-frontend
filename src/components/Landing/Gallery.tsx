@@ -7,9 +7,9 @@ const Gallery = () => {
     const navigate = useNavigate();
 
     const projects = [
-        { name: 'Vin Max Estate', address: 'Okota Ikorodu', image: imageAssets.img1, link: '/project/vin-max-estate' },
-        { name: 'Kent Cone Estate', address: 'Okota, Ikorodu', image: imageAssets.img2, link: '/project/kent-cone-estate' },
-        { name: 'Lim Van Estate', address: 'Agbara, Ikorodu', image: imageAssets.img3, link: '/project/lim-van-estate' },
+        { name: 'Vin Max Estate', address: 'Okota Ikorodu', image: imageAssets.se1, link: '/project/vin-max-estate' },
+        { name: 'Kent Cone Estate', address: 'Okota, Ikorodu', image: imageAssets.se2, link: '/project/kent-cone-estate' },
+        { name: 'Lim Van Estate', address: 'Agbara, Ikorodu', image: imageAssets.se3, link: '/project/lim-van-estate' },
         // { name: 'Rock Lime Estate, address: 'Agbowa', Ikorodu', image: imageAssets.img1, link: '/project' },
     ]
 
