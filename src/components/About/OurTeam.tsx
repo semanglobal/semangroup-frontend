@@ -1,15 +1,87 @@
-import { Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Linkedin, Twitter, Facebook, Instagram, Mail } from 'lucide-react';
 import { team } from '../../assets/imageAssets';
+import { FaExclamationCircle } from 'react-icons/fa';
 
 export default function OurTeam() {
     const teamMembers = [
-        { name: "Amb. Dr. Maxwell Stephen", role: "MD/CEO SEMAN GROUP", image: team.max },
-        { name: "Mr. Uche Gabriel Anamege", role: "D.O.P SEMAN GLOBAL PROJECT", image: team.uche },
-        { name: "Mary Desmond", role: "ACCOUNTANT", image: team.mary },
-        { name: "Engr. Bello Jada", role: "Project Manager", image: team.bello },
-        { name: "Mrs Chioma Tochukwu", role: "HEAD OF MARKETING", image: team.chioma },
-        { name: "Arc. Agada Dickson", role: "ARCHITECT", image: team.agada },
-        { name: "Mr. Sergius Tochukwu Oti.", role: "ICT COORDINATOR", image: team.tochi },
+        {
+            name: "Amb. (Dr) Maxwell Stephen Chigbogu Nweze",
+            role: "GMD/CEO",
+            image: team.max,
+            fb: 'https://web.facebook.com/maxwell.stephen.73',
+            ig: 'https://www.instagram.com/maxwellstephen_seman',
+            x: '',
+            link: '',
+            email: ''
+        },
+
+        {
+            name: "Sir. Uche Gabriel Anamege",
+            role: "Director of Projects",
+            image: team.uche,
+            fb: '',
+            ig: '',
+            x: '',
+            link: '',
+            email: ''
+        },
+
+        {
+            name: "Engr. Bello Umar Jada",
+            role: "Project Manager",
+            image: team.bello,
+            fb: 'https://web.facebook.com/bello.jada.161',
+            ig: '',
+            x: '',
+            link: '',
+            email: 'bellojadaumar@gmail.com'
+        },
+
+        // {
+        //     name: "Barr. Ndudi Ezekiel Chidi",
+        //     role: "Head Legal",
+        //     image: team.bello
+        // },
+
+        {
+            name: "Mrs Chioma Juliet Toochukwu",
+            role: "HEAD OF MARKETING",
+            image: team.chioma,
+            fb: 'https://web.facebook.com/chioma.toochukwu.77',
+            ig: 'https://www.instagram.com/chiomatochilife1',
+            link: 'https://www.linkedin.com/in/chioma-toochukwu-b96a5b36b',
+            x: ''
+        },
+
+        {
+            name: "Arc Agada Dickson",
+            role: "Resident Architect",
+            image: team.agada,
+            fb: 'https://web.facebook.com/DicksonNide',
+            ig: 'https://www.instagram.com/dicksonnide',
+            x: '',
+            link: ''
+        },
+
+        {
+            name: "Mrs Marry Desmond",
+            role: "Accountant",
+            image: team.mary,
+            fb: '',
+            ig: '',
+            x: '',
+            link: ''
+        },
+
+        {
+            name: "Mr Tochukwu Sergius Oti",
+            role: "Head of ICT",
+            image: team.tochi,
+            fb: 'https://web.facebook.com/SergiusTochukwu',
+            ig: 'https://www.instagram.com/sergius_tochukwu',
+            x: '',
+            link: 'https://www.linkedin.com/in/sergius-tochukwu-oti-0b364823a'
+        },
     ];
 
     return (
@@ -41,21 +113,40 @@ export default function OurTeam() {
                                 <h3 className="text-xl font-semibold text-gray-900 mb-1">
                                     {member.name}
                                 </h3>
-                                <p className="text-sm text-gray-600 mb-4">
+                                <p className="text-sm text-gray-600 mb-4 uppercase">
                                     {member.role}
                                 </p>
 
                                 {/* Social Icons */}
                                 <div className="flex gap-3">
-                                    <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
-                                        <Linkedin size={18} />
-                                    </a>
-                                    <a href="#" className="text-gray-500 hover:text-blue-400 transition-colors">
-                                        <Twitter size={18} />
-                                    </a>
-                                    <a href="#" className="text-gray-500 hover:text-blue-700 transition-colors">
-                                        <Facebook size={18} />
-                                    </a>
+                                    {member.link && (
+                                        <a href={member.link} className="text-gray-500 hover:text-blue-600 transition-colors">
+                                            <Linkedin size={18} />
+                                        </a>
+                                    )}
+                                    {member.x && (
+                                        <a href="#" className="text-gray-500 hover:text-blue-400 transition-colors">
+                                            <Twitter size={18} />
+                                        </a>
+                                    )}
+
+                                    {member.fb && (
+                                        <a href={member.fb} className="text-gray-500 hover:text-blue-700 transition-colors">
+                                            <Facebook size={18} />
+                                        </a>
+                                    )}
+
+                                    {member.ig && (
+                                        <a href={member.ig} className="text-gray-500 hover:text-blue-700 transition-colors">
+                                            <Instagram size={18} />
+                                        </a>
+                                    )}
+
+                                    {member.email && (
+                                        <a href={`mailto: ${member.email}`} className="text-gray-500 hover:text-blue-700 transition-colors">
+                                            <Mail size={18} />
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>
