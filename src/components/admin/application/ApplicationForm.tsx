@@ -44,7 +44,6 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
         settingAndEvacuation: false,
         documentUrl: '',
     });
-    console.log(formData)
     const [successModal, setSuccessModal] = useState<boolean>(false)
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
