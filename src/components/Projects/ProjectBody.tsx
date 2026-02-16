@@ -51,7 +51,6 @@ const ProjectBody = () => {
         try {
             const res = await PropertyService.getAllProperties()
             setProjects(res)
-            setError('No Project Found')
         } catch (error: any) {
             console.log(error)
             setError(error.response.data.message || 'Failed to load property details')
