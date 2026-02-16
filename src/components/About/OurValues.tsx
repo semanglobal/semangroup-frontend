@@ -220,7 +220,7 @@ export default function OurValues() {
                             <div className="text-sm text-gray-600">Founded</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-4xl font-bold text-primary mb-2">500+</div>
+                            <div className="text-4xl font-bold text-primary mb-2">5,000+</div>
                             <div className="text-sm text-gray-600">Homes Built</div>
                         </div>
                         <div className="text-center">

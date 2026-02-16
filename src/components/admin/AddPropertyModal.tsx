@@ -446,6 +446,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
                                                 height: '200px',
                                                 marginBottom: '40px' // Space for toolbar overlap
                                             }}
+                                            className='text-gray-800'
                                         />
                                     </Box>
 
