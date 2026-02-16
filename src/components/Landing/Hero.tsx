@@ -1,10 +1,48 @@
-import React from "react";
-import { imageAssets } from "../../assets/imageAssets";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect } from "react";
+import { heroImg } from "../../assets/imageAssets";
 import { ArrowForward, Home, Shield, Verified } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-    const navigate = useNavigate()
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    
+    const slides = [
+        heroImg.se2,
+        heroImg.slide1,
+        heroImg.slide2,
+        heroImg.slide3,
+        heroImg.slide4
+    ];
+
+    // Auto-play functionality
+    useEffect(() => {
+        let interval: any;
+        if (isAutoPlaying) {
+            interval = setInterval(() => {
+                setCurrentSlide((prev) => (prev + 1) % slides.length);
+            }, 3000); // Change slide every 5 seconds
+        }
+        return () => clearInterval(interval);
+    }, [isAutoPlaying, slides.length]);
+
+    // Pause auto-play on hover
+    const pauseAutoPlay = () => setIsAutoPlaying(false);
+    const resumeAutoPlay = () => setIsAutoPlaying(true);
+
+    // Manual navigation
+    const goToSlide = (index: number) => {
+        setCurrentSlide(index);
+    };
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    };
+
     return (
         <section className="relative overflow-hidden bg-linear-to-br from-orange-50 to-white py-10 md:py-10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +89,6 @@ const Hero = () => {
                                     rounded-lg
                                     flex items-center justify-center gap-2
                                 " 
-                                // onClick={() => navigate('/projects')}
                             >
                                 Our Projects
                                 <ArrowForward />
@@ -81,26 +118,69 @@ const Hero = () => {
                         </div>
                     </div>
 
-                    {/* Image Section */}
+                    {/* Image Slideshow Section */}
                     <div className="relative">
-                        {/* <div className="relative bg-white rounded-2xl shadow-2xl p-2 transform -rotate-1 hover:rotate-0 transition-transform duration-300 overflow-hidden">
-                            <img
-                                src={imageAssets.img1}
-                                alt="Luxury real estate property"
-                                className="w-full h-auto rounded-xl object-cover"
-                                loading="lazy"
-                            />
-                        </div> */}
-                        <div className="relative bg-white rounded-2xl shadow-2xl duration-300 overflow-hidden">
-                            <img
-                                src={imageAssets.se2}
-                                alt="Luxury real estate property"
-                                className="w-full h-auto rounded-xl object-cover"
-                                loading="lazy"
-                            />
+                        <div 
+                            className="relative bg-white rounded-2xl shadow-2xl duration-300 overflow-hidden group"
+                            onMouseEnter={pauseAutoPlay}
+                            onMouseLeave={resumeAutoPlay}
+                        >
+                            {/* Slides Container */}
+                            <div className="relative aspect-4/3">
+                                {slides.map((slide, index) => (
+                                    <img
+                                        key={index}
+                                        src={slide}
+                                        alt={`Luxury real estate property ${index + 1}`}
+                                        className={`absolute top-0 left-0 w-full h-full rounded-xl object-cover transition-opacity duration-1000 ease-in-out ${
+                                            index === currentSlide ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                        loading="lazy"
+                                    />
+                                ))}
+                            </div>
+
+                            {/* Navigation Arrows - Visible on hover */}
+                            <button
+                                onClick={prevSlide}
+                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                aria-label="Previous slide"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                aria-label="Next slide"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+
+                            {/* Slide Indicators */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                                {slides.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => goToSlide(index)}
+                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                            index === currentSlide 
+                                                ? 'w-8 bg-primary' 
+                                                : 'bg-white/50 hover:bg-white/80'
+                                        }`}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                ))}
+                            </div>
+
+                            {/* Slide Counter */}
+                            <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                                {currentSlide + 1} / {slides.length}
+                            </div>
                         </div>
-                        {/* <div className="absolute -top-4 -right-4 h-24 w-24 bg-orange-200 rounded-full opacity-50"></div>
-                        <div className="absolute -bottom-4 -left-4 h-32 w-32 bg-blue-200 rounded-full opacity-50"></div> */}
                     </div>
                 </div>
             </div>

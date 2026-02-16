@@ -14,6 +14,12 @@ import se4 from './se4.jpeg'
 
 export const imageAssets = { no_data, img1, img2, img3, logo, logo1, logo2, logo3, contact_us, se1, se2, se3, se4 };
 
+import slide1 from './slide1.jpeg'
+import slide2 from './slide2.jpeg'
+import slide3 from './slide3.jpeg'
+import slide4 from './slide4.jpeg'
+export const heroImg = {slide1, slide2, slide3, slide4, se2}
+
 import bg_pattern_6 from './bg_pattern_6.png';
 import bg_pattern_7 from './bg_pattern_7.png';
 import bg_pattern_8 from './bg_pattern_8.png';
