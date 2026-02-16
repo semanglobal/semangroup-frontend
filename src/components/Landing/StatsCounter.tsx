@@ -13,7 +13,7 @@ const StatsCounter = () => {
     const [hasAnimated, setHasAnimated] = useState(false)
 
     const stats = {
-        properties: 500,
+        properties: 5000,
         years: 15,
         satisfaction: 98,
         projects: 25
@@ -73,7 +73,7 @@ const StatsCounter = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                         <div className="text-center">
                             <div className="text-3xl md:text-4xl font-bold mb-2">
-                                {countedStats.properties}+
+                                {countedStats.properties?.toLocaleString()}+
                             </div>
                             <div className="text-orange-100 text-sm md:text-base">Properties Sold</div>
                         </div>
