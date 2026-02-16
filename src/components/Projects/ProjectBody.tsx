@@ -67,7 +67,16 @@ const ProjectBody = () => {
     const handleRetry = () => {
         fetchProjects()
     }
-    
+
+    const formatPrice = (price: number) => {
+        return new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        }).format(price);
+    };
+
     if (loading && projects.length === 0) {
         return (
             <div className="min-h-[58dvh] flex flex-col items-center justify-center bg-gray-50 p-4">
@@ -130,13 +139,56 @@ const ProjectBody = () => {
                             />
 
                             {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-linear-to-t from-black to-transparent opacity-80" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black to-transparent opacity-100" />
 
                             {/* Content */}
                             <div className="absolute bottom-16 left-10 z-10">
-                                <h2 className="text-3xl font-bold mb-4 text-white">
+                                <span className="text-xl font-bold text-primary bg-white px-2 py-1 rounded">
+                                    {formatPrice(project.price)}
+                                </span>
+                                <h2 className="text-3xl font-bold mb-1 text-white">
                                     {project.title}
                                 </h2>
+
+                                <div className='text-white mb-4'>
+                                    <div className="flex items-center text-white mb-1">
+                                        <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                        </svg>
+                                        <span className="text-sm">
+                                            {project.location.city}, {project.location.state}
+                                        </span>
+
+                                    </div>
+
+                                    <div className="flex items-center gap-3 mb-1">
+                                        <span className="px-2 py-1 border border-gray-300 text-white text-xs rounded">
+                                            {project.propertyType}
+                                        </span>
+                                        <div className="flex items-center text-white">
+                                            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 0v12h8V4H6z" clipRule="evenodd" />
+                                            </svg>
+                                            <span className="text-xs">{project.area} m²</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-1 mb-1">
+                                        {project.amenities.slice(0, 2).map((amenity, index) => (
+                                            <span
+                                                key={index}
+                                                className="px-2 py-1 border border-gray-300 text-white text-xs rounded"
+                                            >
+                                                {amenity}
+                                            </span>
+                                        ))}
+                                        {project.amenities.length > 2 && (
+                                            <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                                                +{project.amenities.length - 2}
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
 
                                 <button className="py-2 px-6 bg-primary hover:bg-primary rounded-md text-sm font-medium text-white"
                                     onClick={() => window.location.href = `/project/${project.slug}`}
