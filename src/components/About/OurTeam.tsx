@@ -46,7 +46,7 @@ export default function OurTeam() {
         {
             name: "Mrs Chioma Juliet Toochukwu",
             role: "HEAD OF MARKETING",
-            image: team.chioma,
+            image: team.chioma2,
             fb: 'https://web.facebook.com/chioma.toochukwu.77',
             ig: 'https://www.instagram.com/chiomatochilife1',
             link: 'https://www.linkedin.com/in/chioma-toochukwu-b96a5b36b',
