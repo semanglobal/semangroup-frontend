@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
                         </div>
                         <p className="text-gray-400 leading-relaxed max-w-md">
                             We are a premier real estate agency specializing in luxury properties,
-                            commercial real estate, and personalized property management services since 2005.
+                            commercial real estate, and personalized property management services since 2016.
                         </p>
                         {/* <div className="pt-4">
                             <h4 className="text-white font-semibold mb-3 text-lg">Subscribe to our newsletter</h4>
@@ -154,10 +154,10 @@ const Footer: React.FC = () => {
                         </div>
 
                         <div className="space-y-4">
-                            <div className="bg-gray-800 rounded-lg p-4">
+                            {/* <div className="bg-gray-800 rounded-lg p-4">
                                 <h4 className="text-white font-semibold mb-2">Certified & Licensed</h4>
                                 <p className="text-gray-400 text-sm">Fully licensed real estate brokers in all 50 states</p>
-                            </div>
+                            </div> */}
 
                             <div className="flex items-center space-x-2 text-gray-400 text-sm">
                                 <a
@@ -189,21 +189,21 @@ const Footer: React.FC = () => {
             {/* Copyright bar */}
             <div className="border-t border-gray-800 bg-gray-950 max-w-360 mx-auto">
                 <div className="container mx-auto px-4 py-6">
-                    <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 justify-center">
                         <p className="text-gray-500 text-sm">
-                            &copy; {currentYear} AdeolaRealty. All rights reserved.
+                            &copy; {currentYear} Seman Global. All rights reserved.
                         </p>
 
-                        <div className="flex items-center space-x-6">
+                        {/* <div className="flex items-center space-x-6">
                             <div className="flex items-center space-x-2">
                                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                                 <span className="text-gray-400 text-sm">24/7 Support Available</span>
                             </div>
 
-                            {/* <div className="text-gray-500 text-sm">
+                            <div className="text-gray-500 text-sm">
                                 MLS® IDX Provided by Real Estate Solutions
-                            </div> */}
-                        </div>
+                            </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

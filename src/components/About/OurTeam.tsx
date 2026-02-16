@@ -67,14 +67,14 @@ export default function OurTeam() {
             name: "Mrs Marry Desmond",
             role: "Accountant",
             image: team.mary,
-            fb: '',
+            fb: 'https://web.facebook.com/mary.okereke.73',
             ig: '',
             x: '',
             link: ''
         },
 
         {
-            name: "Mr Tochukwu Sergius Oti",
+            name: "Mr Sergius Tochukwu Oti",
             role: "Head of ICT",
             image: team.tochi,
             fb: 'https://web.facebook.com/SergiusTochukwu',
