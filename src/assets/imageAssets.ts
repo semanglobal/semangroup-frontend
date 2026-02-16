@@ -31,7 +31,8 @@ import max from './max.jpeg';
 import uche from './uche.jpeg';
 import mary from './mary.jpeg';
 import chioma from './chioma.jpeg';
+import chioma2 from './chioma2.jpeg';
 import tochi from './tochi.jpeg';
 import bello from './bello.jpeg';
 import agada from './agada.jpeg';
-export const team = {max, uche, mary, chioma, tochi, agada, bello}
+export const team = {max, uche, mary, chioma, tochi, agada, bello, chioma2}
