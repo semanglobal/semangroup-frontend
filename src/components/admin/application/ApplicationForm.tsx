@@ -44,6 +44,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
         settingAndEvacuation: false,
         documentUrl: '',
     });
+    console.log(formData)
     const [successModal, setSuccessModal] = useState<boolean>(false)
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -96,13 +97,13 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
         { value: 'Terraced Duplex', label: 'Terraced Duplex' }
     ];
 
-    const siteNameOptions = [
-        { value: 'Abuja Prime Estate', label: 'Abuja Prime Estate' },
-        { value: 'Lagos Luxury Homes', label: 'Lagos Luxury Homes' },
-        { value: 'Port Harcourt Garden City', label: 'Port Harcourt Garden City' },
-        { value: 'Kano Royal Estates', label: 'Kano Royal Estates' },
-        { value: 'Ibadan Heritage Homes', label: 'Ibadan Heritage Homes' }
-    ];
+    // const siteNameOptions = [
+    //     { value: 'Abuja Prime Estate', label: 'Abuja Prime Estate' },
+    //     { value: 'Lagos Luxury Homes', label: 'Lagos Luxury Homes' },
+    //     { value: 'Port Harcourt Garden City', label: 'Port Harcourt Garden City' },
+    //     { value: 'Kano Royal Estates', label: 'Kano Royal Estates' },
+    //     { value: 'Ibadan Heritage Homes', label: 'Ibadan Heritage Homes' }
+    // ];
 
     const selectedPaymentStatusOption = paymentStatusOptions.find(option =>
         option.value === formData.paymentStatus
@@ -112,9 +113,9 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
         option.value === formData.houseType
     );
 
-    const selectedSiteNameOption = siteNameOptions.find(option =>
-        option.value === formData.siteName
-    );
+    // const selectedSiteNameOption = siteNameOptions.find(option =>
+    //     option.value === formData.siteName
+    // );
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         const { name, value, type } = e.target;
@@ -321,7 +322,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
                 <div className="space-y-4 grid grid-cols-1 md:grid-cols-2 md:space-x-4">
                     {/* Site Name */}
-                    <div>
+                    {/* <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Site Name</label>
                         <Select
                             name="siteName"
@@ -331,6 +332,18 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
                             placeholder="Select site"
                             className="text-sm"
                             styles={customStyles}
+                        />
+                        {errors.siteName && <p className="text-xs text-red-500 mt-1">{errors.siteName}</p>}
+                    </div> */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Site Name</label>
+                        <input
+                            type="text"
+                            name="siteName"
+                            value={formData.siteName}
+                            onChange={handleInputChange}
+                            placeholder="Enter site name"
+                            className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder-gray-400 text-sm"
                         />
                         {errors.siteName && <p className="text-xs text-red-500 mt-1">{errors.siteName}</p>}
                     </div>
