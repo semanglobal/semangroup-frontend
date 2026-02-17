@@ -40,7 +40,7 @@ const ProjectBody = () => {
     // ];
     const [projects, setProjects] = useState<PropertyType[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<boolean | null>(null)
 
     useEffect(() => {
         fetchProjects()
@@ -53,7 +53,8 @@ const ProjectBody = () => {
             setProjects(res)
         } catch (error: any) {
             console.log(error)
-            setError(error.response.data.message || 'Failed to load property details')
+            setError(true)
+            // setError(error.response.data.message || 'Failed to load property details')
             setProjects([])
         } finally {
             setLoading(false)

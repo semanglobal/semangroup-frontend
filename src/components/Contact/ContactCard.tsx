@@ -65,7 +65,7 @@ const ContactCard = () => {
 
                 {/* INFO CARDS */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div className="lg:h-40 w-full border flex items-center gap-4 p-6">
+                    <div className="lg:h-60 w-full border flex items-center gap-4 p-6">
                         <div className="bg-orange-100 p-4">
                             <MapPinned className="text-amber-600" size={50} />
                         </div>
@@ -81,7 +81,7 @@ const ContactCard = () => {
                         </div>
                     </div>
 
-                    <div className="h-40 w-full border flex items-center gap-4 p-6">
+                    <div className="h-60 w-full border flex items-center gap-4 p-6">
                         <div className="bg-orange-100 p-4">
                             <PhoneCall className="text-amber-600" size={50} />
                         </div>
@@ -89,16 +89,27 @@ const ContactCard = () => {
                             <p className="text-gray-800 font-bold text-2xl">
                                 Contact Number
                             </p>
-                            <p className="text-gray-500">
-                                Phone: +234 818 436 8514
-                            </p>
+                            <div>
+                                <p className="text-gray-500">
+                                    Phone:
+                                </p>
+                                <p className="text-gray-500">
+                                    +234 818 436 8514
+                                </p>
+                                <p className="text-gray-500">
+                                    +234 803 833 6062
+                                </p>
+                                <p className="text-gray-500">
+                                    +234 814 532 5182
+                                </p>
+                            </div>
                             <p className="text-gray-500">
                                 Email: semanglobalgroup@gmail.com
                             </p>
                         </div>
                     </div>
 
-                    <div className="h-40 w-full border flex items-center gap-4 p-6">
+                    <div className="h-60 w-full border flex items-center gap-4 p-6">
                         <div className="bg-orange-100 p-4">
                             <Clock className="text-amber-600" size={50} />
                         </div>

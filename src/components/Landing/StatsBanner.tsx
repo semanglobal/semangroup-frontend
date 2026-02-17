@@ -8,7 +8,7 @@ export default function StatsBanner() {
 
   return (
     <div className="w-full bg-gray-800 py-12 px-4 sm:px-6 lg:px-8" ref={statsRef}>
-      <div className="max-w-[1440px] mx-auto flex flex-wrap justify-around items-center text-white text-center">
+      <div className="max-w-360 mx-auto flex flex-wrap justify-around items-center text-white text-center">
 
         {/* Course Enrollments */}
         <div className="h-58 w-58 bg-primary rounded-full flex flex-col items-center justify-center">
