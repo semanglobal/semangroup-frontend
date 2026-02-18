@@ -199,7 +199,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onSuccess,
                                     onChange={handleInputChange}
                                     placeholder="customer@example.com"
                                     disabled={loading}
-                                    className={`block w-full pl-10 pr-3 py-2.5 border ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
+                                    className={`block w-full pl-10 pr-3 py-2.5 border text-gray-900 ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
                                         } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition disabled:bg-gray-100 disabled:cursor-not-allowed`}
                                 />
                             </div>
@@ -225,7 +225,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onSuccess,
                                     onChange={handleInputChange}
                                     placeholder="John Doe"
                                     disabled={loading}
-                                    className={`block w-full pl-10 pr-3 py-2.5 border ${errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
+                                    className={`block w-full pl-10 pr-3 py-2.5 border text-gray-900 ${errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
                                         } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition disabled:bg-gray-100 disabled:cursor-not-allowed`}
                                 />
                             </div>
