@@ -6,6 +6,7 @@ import About from '../components/Landing/About'
 import Benefits from '../components/Landing/Benefits'
 import StatsCounter from '../components/Landing/StatsCounter'
 import FAQ from '../components/Landing/FAQ'
+import MissionVision from '../components/Landing/MissionVision'
 
 const Landing = () => {
     return (
@@ -13,6 +14,7 @@ const Landing = () => {
             <Hero />
             <Benefits />
             <About />
+            <MissionVision />
             <Gallery />
             <StatsCounter />
             <FAQ />
