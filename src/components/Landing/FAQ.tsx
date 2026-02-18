@@ -52,12 +52,12 @@ export default function FAQ() {
                 {/* Header */}
                 <div className="mb-14">
                     <span
-                        className="mb-4 inline-block text-xs font-medium uppercase tracking-widest text-amber-700"
+                        className="mb-4 inline-block text-xs font-medium uppercase tracking-widest text-primary"
                         style={{ fontFamily: "'DM Sans', sans-serif" }}
                     >
                         Support Center
                     </span>
-                    <div className="mb-5 h-0.5 w-12 bg-linear-to-r from-amber-700 to-transparent" />
+                    <div className="mb-5 h-0.5 w-12 bg-linear-to-r from-primary to-transparent" />
                     <h1
                         className="mb-4 text-5xl font-semibold leading-tight text-stone-900"
                         style={{ fontFamily: "'Cormorant Garamond', serif" }}
@@ -90,7 +90,7 @@ export default function FAQ() {
                                     className="flex w-full items-center justify-between gap-6 py-7 text-left"
                                 >
                                     <span
-                                        className={`text-xl font-medium leading-snug transition-colors duration-200 ${isOpen ? "text-amber-700" : "text-stone-900"
+                                        className={`text-xl font-medium leading-snug transition-colors duration-200 ${isOpen ? "text-primary" : "text-stone-900"
                                             }`}
                                         style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                     >
@@ -100,8 +100,8 @@ export default function FAQ() {
                                     {/* Icon */}
                                     <span
                                         className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-[1.5px] transition-all duration-300 ${isOpen
-                                                ? "rotate-45 border-amber-700 bg-amber-700"
-                                                : "border-amber-700 bg-transparent"
+                                            ? "rotate-45 border-primary bg-primary"
+                                            : "border-primary bg-transparent"
                                             }`}
                                     >
                                         <svg
@@ -145,12 +145,13 @@ export default function FAQ() {
                         <span className="font-medium text-white">Still have questions?</span>{" "}
                         Our team is ready to assist you.
                     </p>
-                    <button
-                        className="rounded bg-amber-700 px-6 py-3 text-xs font-medium uppercase tracking-widest text-white transition-colors duration-200 hover:bg-amber-600"
+                    <a
+                        href="/contacts"
+                        className="rounded bg-primary px-6 py-3 text-xs font-medium uppercase tracking-widest text-white transition-colors duration-200 hover:bg-amber-700"
                         style={{ fontFamily: "'DM Sans', sans-serif" }}
                     >
                         Contact Us
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
