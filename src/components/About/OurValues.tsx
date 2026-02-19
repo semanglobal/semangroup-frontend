@@ -149,7 +149,7 @@ export default function OurValues() {
                                     <div className={`absolute top-0 left-0 w-2 h-full ${value.color} group-hover:w-3 transition-all duration-300`}></div>
                                     
                                     <div className="p-8 pl-10">
-                                        <div className="flex items-start gap-6">
+                                        <div className="flex flex-col md:flex-row items-start gap-6">
                                             <div className={`${value.color} p-4 rounded-2xl shadow-lg`}>
                                                 <Icon className="w-8 h-8 text-white" />
                                             </div>

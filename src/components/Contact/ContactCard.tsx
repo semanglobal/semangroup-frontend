@@ -99,9 +99,9 @@ const ContactCard = () => {
                                 <p className="text-gray-500">
                                     +234 803 833 6062
                                 </p>
-                                <p className="text-gray-500">
+                                {/* <p className="text-gray-500">
                                     +234 814 532 5182
-                                </p>
+                                </p> */}
                             </div>
                             <p className="text-gray-500">
                                 Email: semanglobalgroup@gmail.com
