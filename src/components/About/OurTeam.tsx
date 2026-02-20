@@ -279,23 +279,52 @@ export default function OurTeam() {
             </div>
 
             {showDetails && (
-                <div className="fixed top-0 lg:px-40 left-0 w-full h-dvh overflow-scroll bg-black/50 flex items-center justify center z-50">
-                    <div className="bg-white h-dvh lg:h-[80dvh] p-4 lg:p-10 space-y-4 relative">
-                        <X className="absolute right-10 text-xl cursor-pointer text-gray-900" onClick={() => setShowDetails(false)} />
-                        <div className="flex flex-col md:flex-row md:items-end gap-4">
-                            <img src={teamMembers[detailId].image} alt="" className="w-40 h-40 rounded-full object-cover shrink-0" />
-                            <div >
-                                <h3 className="text-2xl font-bold text-primary mb-2">{teamMembers[detailId].name}</h3>
-                                <p>{teamMembers[detailId].role}</p>
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 lg:p-10">
+                    <div className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg p-6 lg:p-10 space-y-6 relative">
+                        {/* Close button - positioned absolutely within the modal */}
+                        <button
+                            onClick={() => setShowDetails(false)}
+                            className="absolute right-4 top-4 lg:right-6 lg:top-6 text-gray-500 hover:text-gray-700 transition-colors z-10"
+                        >
+                            <X size={24} />
+                        </button>
+
+                        {/* Content with padding to prevent overlap with close button */}
+                        <div className="pt-8">
+                            {/* Header with image and name */}
+                            <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
+                                <img
+                                    src={teamMembers[detailId].image}
+                                    alt={teamMembers[detailId].name}
+                                    className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-primary/10 shrink-0"
+                                />
+                                <div className="text-center md:text-left">
+                                    <h3 className="text-2xl lg:text-3xl font-bold text-primary mb-2">
+                                        {teamMembers[detailId].name}
+                                    </h3>
+                                    <p className="text-gray-600 text-lg">{teamMembers[detailId].role}</p>
+                                </div>
+                            </div>
+
+                            {/* Description */}
+                            <div className="prose prose-lg max-w-none mb-8">
+                                {teamMembers[detailId].description.map((para, i) => (
+                                    <p key={i} className="mb-4 text-gray-600 leading-relaxed">
+                                        {para}
+                                    </p>
+                                ))}
+                            </div>
+
+                            {/* Close button at bottom for mobile convenience */}
+                            <div className="flex justify-end">
+                                <button
+                                    className='bg-primary text-white px-6 py-2 rounded-md hover:bg-primary/80 transition-colors duration-200 font-medium'
+                                    onClick={() => setShowDetails(false)}
+                                >
+                                    Close
+                                </button>
                             </div>
                         </div>
-                        <p className="bg-white ">
-                            {teamMembers[detailId].description.map((para, i) => (
-                                <p key={i} className="mb-4 text-gray-600">{para}</p>
-                            ))}
-                        </p>
-
-                        <button className='bg-primary text-white px-4 py-1 rounded-md hover:bg-primary/60' onClick={() => setShowDetails(false)}>Close</button>
                     </div>
                 </div>
             )}
