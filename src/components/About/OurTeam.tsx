@@ -278,32 +278,10 @@ export default function OurTeam() {
                 </div>
             </div>
 
-            {showMdDetails && (
-                <div className="fixed top-0 lg:px-40 left-0 w-full h-dvh overflow-scroll bg-white flex items-center justify center z-50">
-                    <div className="bg-white h-dvh lg:h-[80dvh] p-4 lg:p-10 space-y-4 relative">
-                        <X className="absolute right-10 text-xl cursor-pointer" onClick={() => setShowMdDetails(false)} />
-                        <div className="flex flex-col items-start gap-4">
-                            <img src={md.image} alt="" className="w-40 h-40 shrink-0 rounded-full object-cover" />
-                            <div >
-                                <h3 className="text-2xl font-bold text-primary mb-2">{md.name}</h3>
-                                <p>{md.role}</p>
-                            </div>
-                        </div>
-                        <p className="bg-white pb-4">
-                            <p className="bg-white ">
-                                {md.description.map((para, i) => (
-                                    <p key={i} className="mb-4">{para}</p>
-                                ))}
-                            </p>
-                        </p>
-                    </div>
-                </div>
-            )}
-
             {showDetails && (
-                <div className="fixed top-0 lg:px-40 left-0 w-full h-dvh overflow-scroll bg-white flex items-center justify center z-50">
+                <div className="fixed top-0 lg:px-40 left-0 w-full h-dvh overflow-scroll bg-black/50 flex items-center justify center z-50">
                     <div className="bg-white h-dvh lg:h-[80dvh] p-4 lg:p-10 space-y-4 relative">
-                        <X className="absolute right-10 text-xl cursor-pointer" onClick={() => setShowDetails(false)} />
+                        <X className="absolute right-10 text-xl cursor-pointer text-gray-900" onClick={() => setShowDetails(false)} />
                         <div className="flex flex-col md:flex-row md:items-end gap-4">
                             <img src={teamMembers[detailId].image} alt="" className="w-40 h-40 rounded-full object-cover shrink-0" />
                             <div >
@@ -312,11 +290,12 @@ export default function OurTeam() {
                             </div>
                         </div>
                         <p className="bg-white ">
-                            {/* <p>{teamMembers[detailId].description}</p> */}
                             {teamMembers[detailId].description.map((para, i) => (
                                 <p key={i} className="mb-4 text-gray-600">{para}</p>
                             ))}
                         </p>
+
+                        <button className='bg-primary text-white px-4 py-1 rounded-md hover:bg-primary/60' onClick={() => setShowDetails(false)}>Close</button>
                     </div>
                 </div>
             )}
