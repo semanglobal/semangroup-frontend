@@ -25,7 +25,7 @@ const Gallery = () => {
         try {
             const res = await PropertyService.getAllProperties()
             const only3 = res.slice(0, 3)
-            setProjects(res)
+            setProjects(only3)
         } catch (error: any) {
             console.error(error)
             setError(error.response.data.message || 'Failed to load property details')
