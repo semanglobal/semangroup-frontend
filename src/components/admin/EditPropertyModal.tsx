@@ -54,7 +54,7 @@ interface EditPropertyModalProps {
     onUpdate: (updatedProperty: PropertyType) => void;
 }
 
-const propertyTypes = ['apartment', 'house', 'condo', 'villa', 'townhouse', 'commercial'];
+const propertyTypes = ["apartment", "house", "land"];
 const statusOptions = ['for-sale', 'for-rent'];
 const predefinedAmenities = [
     '24/7 Electricity',
