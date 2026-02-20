@@ -11,7 +11,7 @@ const Gallery = () => {
     const [projects, setProjects] = useState<PropertyType[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
-    
+
     const handleProjectClick = (link: string) => {
         // onClick={() => window.location.href = `/project/${project.slug}`}
     }
@@ -204,6 +204,9 @@ const Gallery = () => {
                                     </span>
                                     <p className="text-sm opacity-90 mt-2">{project?.location.address}</p>
                                     <h3 className="font-bold text-lg sm:text-xl line-clamp-1">{project?.title}</h3>
+                                    <span className="px-2 py-1 border border-gray-300 text-white text-xs rounded">
+                                        {project.propertyType}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -231,6 +234,9 @@ const Gallery = () => {
                                         </span>
                                         <p className="text-sm opacity-90 mt-2">{project?.location.address}</p>
                                         <h3 className="font-bold text-lg sm:text-xl line-clamp-1">{project?.title}</h3>
+                                        <span className="px-2 py-1 border border-gray-300 text-white text-xs rounded">
+                                            {project.propertyType}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
