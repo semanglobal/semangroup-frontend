@@ -193,7 +193,6 @@ const ProjectBody = () => {
 
                                 <button className="py-2 px-6 bg-primary hover:bg-primary rounded-md text-sm font-medium text-white"
                                     onClick={() => window.location.href = `/project/${project.slug}`}
-                                // onClick={() => navigate(`/project/${project.slug}`, { state: project })}
                                 >
                                     View Details
                                 </button>

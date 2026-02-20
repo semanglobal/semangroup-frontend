@@ -68,11 +68,12 @@ const Hero = () => {
                         <div className="flex flex-col lg:flex-row gap-4 justify-center lg:justify-start mt-10">
                             <a href="/about-us" className="
                                 border border-primary text-primary
-                                hover:bg-orange-50 transition-colors
+                                hover:bg-orange-100 transition-colors
                                 px-4 md:px-6 py-2 md:py-3
                                 text-xs
                                 md:text-lg
                                 rounded-lg
+                                shadow-md
                                 flex items-center justify-center gap-2
                             ">
                                 Learn More
@@ -81,13 +82,14 @@ const Hero = () => {
 
                             <a href="/projects" 
                                 className="
-                                    bg-primary hover:bg-primary transition-colors
+                                    bg-primary hover:bg-orange-600 transition-colors
                                     text-white
                                     px-4 md:px-6 py-2 md:py-3
                                     text-xs
                                     md:text-lg
                                     rounded-lg
                                     flex items-center justify-center gap-2
+                                    shadow-lg
                                 " 
                             >
                                 Our Projects

@@ -15,8 +15,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onSuccess,
     const [formData, setFormData] = useState({
         email: '',
         name: '',
-        // amount: amount
     });
+
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState<Partial<typeof formData>>({});
 
@@ -308,13 +308,19 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onSuccess,
                         {/* Terms */}
                         <p className="text-xs text-center text-gray-400 mt-4">
                             By proceeding, you agree to our{' '}
-                            <a href="/terms" className="text-primary hover:underline">
+                            <span
+                                // href="/terms"
+                                className="text-primary hover:underline"
+                            >
                                 Terms of Service
-                            </a>{' '}
+                            </span>{' '}
                             and{' '}
-                            <a href="/privacy" className="text-primary hover:underline">
+                            <span
+                                // href="/privacy"
+                                className="text-primary hover:underline"
+                            >
                                 Privacy Policy
-                            </a>
+                            </span>
                         </p>
                     </form>
                 </div>

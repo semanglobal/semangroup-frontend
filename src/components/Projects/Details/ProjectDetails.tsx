@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import {
     LocateIcon,
@@ -20,7 +20,7 @@ import {
 import { Link as LinkScroll } from 'react-scroll'
 import { type PropertyType } from '../../../types/propertyType'
 import { PropertyService } from '../../../services/propertyService'
-import PaymentModal from '../../admin/payment/PaymentModal'
+import PaymentSummary from './PaymentSummary'
 
 // Define a default property structure to avoid undefined errors
 const defaultProperty: any = {
@@ -175,9 +175,8 @@ const ProjectDetails = () => {
         fetchData()
     }
 
-    const [openPaymentModal, setOpenPaymentModal] = useState<boolean>(false);
+    const [showPaymentSummary, setShowPaymentSummary] = useState<boolean>(false);
     const [amount, setAmount] = useState<number>(0)
-
     // Loading state with better UI
     if (isInitialLoad && isLoading) {
         return (
@@ -408,7 +407,7 @@ const ProjectDetails = () => {
                                         </div>
                                     </div>
 
-                                    <button className='w-full mt-6 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors' onClick={() => {setOpenPaymentModal(true); setAmount(property.price)}}>
+                                    <button className='w-full mt-6 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors' onClick={() => { setShowPaymentSummary(true); setAmount(property.price) }}>
                                         Purchase Property
                                     </button>
                                 </div>
@@ -566,10 +565,11 @@ const ProjectDetails = () => {
                 )}
             </div>
 
-            <PaymentModal
-                isOpen={openPaymentModal}
-                onClose={() => setOpenPaymentModal(false)}
-                amount={amount}
+            <PaymentSummary
+                isOpen={showPaymentSummary}
+                onClose={() => setShowPaymentSummary(false)}
+                propertyAmount={property.price}
+                propertyName={property.title}
             />
         </div>
     )
