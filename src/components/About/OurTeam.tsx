@@ -62,7 +62,7 @@ export default function OurTeam() {
             link: '',
             email: '',
             description: [
-                `Our Director of Projects at Seman Global Projects Ltd brings decades of high-level experience in finance, regulation, and institutional leadership to every project he oversees. He previously served in senior roles at the Central Bank of Nigeria, where he coordinated major financial operations, policy implementation, and institutional reforms. At Seman, he leads project execution with precision, ensuring timely delivery, regulatory compliance, and exceptional quality standards across all developments.`,
+                `Sir. Uche Gabriel Anamege brings decades of high-level experience in finance, regulation, and institutional leadership to every project he oversees. He previously served in senior roles at the Central Bank of Nigeria, where he coordinated major financial operations, policy implementation, and institutional reforms. At Seman, he leads project execution with precision, ensuring timely delivery, regulatory compliance, and exceptional quality standards across all developments.`,
 
                 `His career is distinguished by national commendations, global training exposures, and a proven record of operational excellence. With his strategic leadership, Seman Global Projects Ltd continues to deliver landmark projects that inspire confidence and long-term value.`
             ]
