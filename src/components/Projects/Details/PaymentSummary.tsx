@@ -119,6 +119,7 @@ const PaymentSummary: React.FC<PaymentSummaryProps> = ({
 
                         {/* Additional info */}
                         <div className="text-xs text-gray-400 mt-4 space-y-1">
+                            <p className='font-medium text-primary mb-2'>Note: Your application form will be downloaded after successful payment.  Ensure you fill it, sign and scan it, then send it back to us on WhatsApp via +2348184368514 or via email: Semanglobalgroup@gmail.com</p>
                             <p>• Application form fee is non-refundable</p>
                             <p>• Service charges include processing and verification fees</p>
                             <p>• All amounts are in Nigerian Naira (NGN)</p>

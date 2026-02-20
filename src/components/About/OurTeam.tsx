@@ -138,7 +138,9 @@ export default function OurTeam() {
             x: '',
             link: 'https://www.linkedin.com/in/sergius-tochukwu-oti-0b364823a',
             description: [
-                'Sergius Tochukwu Oti oversees the company’s digital infrastructure, ensuring seamless technology operations that support productivity, marketing, and client engagement. Before joining Seman, he delivered high impact digital solutions, visual branding, and media content for diverse organizations, campaigns, and events, earning a reputation for creativity and technical excellence.',
+                'Sergius Tochukwu Oti oversees the company’s digital infrastructure, ensuring seamless technology operations that support productivity, marketing, and client engagement.',
+                
+                'Before joining Seman, he delivered high impact digital solutions, visual branding, and media content for diverse organizations, campaigns, and events, earning a reputation for creativity and technical excellence.',
 
                 'At Seman, he leads the company’s ICT systems while integrating innovative digital strategies that enhance operations, marketing, and client experience. He holds professional certifications in Content Marketing, Social Media Management, and Branding Strategy, equipping him with advanced tools for today’s digital economy. Additionally, he is certified in Google Digital Marketing & E-commerce, applying global best practices to strengthen the company’s online visibility and performance.',
 
