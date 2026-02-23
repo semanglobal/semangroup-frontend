@@ -7,7 +7,7 @@ interface MapLocation {
     address: string;
     title: string;
     phone: string;
-    website: string;
+    // website: string;
 }
 
 const EnhancedMap = () => {
@@ -20,7 +20,7 @@ const EnhancedMap = () => {
         address: 'Suit 213 MKK Plaza, No 22 IT Igbani Street Opp. Nigeria Canadian International School Beside Vinnee Gas Jabi, Abuja',
         title: 'SEMAN GLOBAL PROJECT LTD',
         phone: '+234 818 436 8514',
-        website: 'www.semanglobal.ng'
+        // website: 'www.semanglobalgroup.com'
     };
 
     const mapsUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.630658478612!2d${location.lng}!3d${location.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d5c5c5c5c5c%3A0xabcdefabcdefabcd!2s${encodeURIComponent(location.address)}!5e0!3m2!1sen!2sng!4v${Date.now()}`;
@@ -81,7 +81,7 @@ const EnhancedMap = () => {
                         </a>
                     </div>
 
-                    <div className="flex items-center space-x-3">
+                    {/* <div className="flex items-center space-x-3">
                         <Globe className="w-5 h-5 text-blue-600 shrink-0" />
                         <a
                             href={`https://${location.website}`}
@@ -91,7 +91,7 @@ const EnhancedMap = () => {
                         >
                             {location.website}
                         </a>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Action Buttons */}
@@ -179,7 +179,7 @@ const EnhancedMap = () => {
                         </a>
                     </div>
 
-                    <div className="flex items-center space-x-3">
+                    {/* <div className="flex items-center space-x-3">
                         <Globe className="w-5 h-5 text-blue-600 shrink-0" />
                         <a
                             href={`https://${location.website}`}
@@ -189,7 +189,7 @@ const EnhancedMap = () => {
                         >
                             {location.website}
                         </a>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Action Buttons */}

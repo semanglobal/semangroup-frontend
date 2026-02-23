@@ -44,6 +44,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
         settingAndEvacuation: false,
         documentUrl: '',
     });
+
     const [successModal, setSuccessModal] = useState<boolean>(false)
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -420,7 +421,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
                     {/* House Type */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">House Type</label>
-                        <Select
+                        {/* <Select
                             name="houseType"
                             options={houseTypeOptions}
                             value={selectedHouseTypeOption}
@@ -428,6 +429,14 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
                             placeholder="Select house type"
                             className="text-sm"
                             styles={customStyles}
+                        /> */}
+                        <input
+                            type="text"
+                            name="houseType"
+                            value={formData.houseType}
+                            onChange={handleInputChange}
+                            placeholder="House type"
+                            className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder-gray-400 text-sm"
                         />
                         {errors.houseType && <p className="text-xs text-red-500 mt-1">{errors.houseType}</p>}
                     </div>
