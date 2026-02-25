@@ -126,6 +126,7 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
     const [qrValue, setQrValue] = useState('');
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [buyer, setBuyer] = useState<string>('')
+    const [siteNameOptions, setSiteNameOptions] = useState<{ value: string; label: string }[]>([])
 
     const openDownloadModal = (buyer: string, id: string) => {
         setOpenDownloadModal(true);
@@ -157,6 +158,21 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
         }
     };
 
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+
+            const { data } = await ApplicationService.getAllApplications();
+            setSiteNameOptions(data ? Array.from(new Set(data.map(app => app.siteName))).map(type => ({ value: type!, label: type! })) : [])
+            console.log(data)
+        } catch (error) {
+            console.error('Error fetching applications:', error);
+        }
+    };
+
     const paymentStatusOptions = [
         { value: 'full', label: 'Full Payment' },
         { value: 'partial', label: 'Partial Payment' },
@@ -173,13 +189,13 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
         { value: 'Terraced Duplex', label: 'Terraced Duplex' }
     ];
 
-    const siteNameOptions = [
-        { value: 'Abuja Prime Estate', label: 'Abuja Prime Estate' },
-        { value: 'Lagos Luxury Homes', label: 'Lagos Luxury Homes' },
-        { value: 'Port Harcourt Garden City', label: 'Port Harcourt Garden City' },
-        { value: 'Kano Royal Estates', label: 'Kano Royal Estates' },
-        { value: 'Ibadan Heritage Homes', label: 'Ibadan Heritage Homes' }
-    ];
+    // const siteNameOptions = [
+    //     { value: 'Abuja Prime Estate', label: 'Abuja Prime Estate' },
+    //     { value: 'Lagos Luxury Homes', label: 'Lagos Luxury Homes' },
+    //     { value: 'Port Harcourt Garden City', label: 'Port Harcourt Garden City' },
+    //     { value: 'Kano Royal Estates', label: 'Kano Royal Estates' },
+    //     { value: 'Ibadan Heritage Homes', label: 'Ibadan Heritage Homes' }
+    // ];
 
     const getPaymentStatusBadge = (status: string) => {
         const statusConfig: { [key: string]: { color: string; text: string } } = {
@@ -211,6 +227,7 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
     };
 
     const handleFilterChange = (key: keyof FilterState, value: string | undefined) => {
+        console.log('Filter changed:', key, value);
         setFilters(prev => ({ ...prev, [key]: value }));
     };
 
@@ -396,7 +413,7 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <input
                             type="text"
-                            placeholder="Search applications by buyer, application #, plot #..."
+                            placeholder="Search applications by Id, site name, and buyer..."
                             value={searchQuery}
                             onChange={(e) => { setSearchQuery(e.target.value); setSearchTerm(e.target.value) }}
                             className="pl-10 pr-4 py-1.5 border text-gray-900 bg-white border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary w-full"
