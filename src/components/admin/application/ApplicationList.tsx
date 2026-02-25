@@ -167,7 +167,6 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
 
             const { data } = await ApplicationService.getAllApplications();
             setSiteNameOptions(data ? Array.from(new Set(data.map(app => app.siteName))).map(type => ({ value: type!, label: type! })) : [])
-            console.log(data)
         } catch (error) {
             console.error('Error fetching applications:', error);
         }
