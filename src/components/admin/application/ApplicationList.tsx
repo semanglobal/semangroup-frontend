@@ -226,7 +226,6 @@ const ApplicationList: React.FC<ApplicationListProps> = ({
     };
 
     const handleFilterChange = (key: keyof FilterState, value: string | undefined) => {
-        console.log('Filter changed:', key, value);
         setFilters(prev => ({ ...prev, [key]: value }));
     };
 
