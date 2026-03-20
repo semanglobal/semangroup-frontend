@@ -384,7 +384,7 @@ const PaymentList: React.FC = () => {
                         placeholder="From Date"
                         value={filters.dateFrom || ''}
                         onChange={(e) => handleFilterChange('dateFrom', e.target.value)}
-                        className="px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary w-full md:w-40"
+                        className="px-3 py-1.5 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary w-full md:w-40"
                     />
 
                     <input
@@ -392,7 +392,7 @@ const PaymentList: React.FC = () => {
                         placeholder="To Date"
                         value={filters.dateTo || ''}
                         onChange={(e) => handleFilterChange('dateTo', e.target.value)}
-                        className="px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary w-full md:w-40"
+                        className="px-3 py-1.5 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary w-full md:w-40"
                     />
 
                     <div className="flex gap-2">
