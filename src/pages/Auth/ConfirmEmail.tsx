@@ -185,7 +185,7 @@ const ConfirmEmail: React.FC<ConfirmEmailProps> = () => {
                 onChange={(e) => handleInputChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 onPaste={handlePaste}
-                className={`w-12 h-12 text-center text-xl font-semibold border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${digit
+                className={`w-12 h-12 text-center text-xl font-semibold border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors text-gray-900 ${digit
                   ? 'border-primary bg-blue-50'
                   : 'border-gray-300 hover:border-gray-400'
                   } ${isVerifying ? 'opacity-50 cursor-not-allowed' : ''}`}

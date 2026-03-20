@@ -819,6 +819,7 @@ const AddPropertyModal: React.FC<AddPropertyModalProps> = ({
                                                         addNewAmenity();
                                                     }
                                                 }}
+                                                className='text-gray-800'
                                             />
                                             <Button
                                                 variant="outlined"
