@@ -13,8 +13,8 @@ const StatsCounter = () => {
     const [hasAnimated, setHasAnimated] = useState(false)
 
     const stats = {
-        properties: 5000,
-        years: 15,
+        properties: 20000,
+        years: 9,
         satisfaction: 98,
         projects: 25
     }
