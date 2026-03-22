@@ -16,7 +16,7 @@ const Benefits = () => {
             title: "Premium Properties",
             description: "Modern designs with premium finishes and energy-efficient features for comfortable living.",
             features: ["Modern design", "Energy efficient", "Spacious layouts"],
-            stats: "500+ Properties"
+            stats: "20,000+ Properties"
         },
         {
             icon: <ShieldCheck className="w-5 h-5" />,
@@ -107,7 +107,7 @@ const Benefits = () => {
                         {/* Overlay with stats */}
                         <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent p-6">
                             <div className="text-white">
-                                <div className="text-2xl font-bold">15+ Years</div>
+                                <div className="text-2xl font-bold">9+ Years</div>
                                 <p className="text-sm text-gray-200">Of Excellence in Real Estate</p>
                             </div>
                         </div>
@@ -170,7 +170,7 @@ const Benefits = () => {
                         <div className="mt-6 bg-orange-50 rounded-xl p-4 flex items-center gap-3">
                             <ShieldCheck className="w-8 h-8 text-primary" />
                             <p className="text-sm text-gray-700">
-                                <span className="font-semibold">Trusted by 500+ homeowners</span> across Nigeria with 100% satisfaction guarantee
+                                <span className="font-semibold">Trusted by 10,000+ homeowners</span> across Nigeria with 100% satisfaction guarantee
                             </p>
                         </div>
                     </div>
