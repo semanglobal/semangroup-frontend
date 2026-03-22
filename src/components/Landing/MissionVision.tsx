@@ -5,7 +5,7 @@ const MissionVision = () => {
     const values = [
         {
             title: "Mission",
-            description: "To build quality, affordable spaces that serve people, strengthen communities, and scale across Nigeria and Africa.",
+            description: "To build quality affordable spaces that serve people, strengthen communities, and scale across Nigeria and Africa.",
             icon: Target,
             color: "bg-blue-600"
         },
